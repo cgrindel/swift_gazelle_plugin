@@ -5,7 +5,7 @@ import (
 
 	"github.com/bazelbuild/bazel-gazelle/language"
 	"github.com/bazelbuild/bazel-gazelle/rule"
-	"github.com/cgrindel/rules_swift_package_manager/gazelle/internal/swiftpkg"
+	"github.com/cgrindel/swift_gazelle_plugin/gazelle/internal/swiftpkg"
 	mapset "github.com/deckarep/golang-set/v2"
 )
 
@@ -65,7 +65,7 @@ func collectSwiftInfo(fileInfos []*swiftpkg.SwiftFileInfo) ([]string, ModuleType
 
 	// Adjust the rule kind, if necessary.
 	// Check if this is a test module first. On Linux, a main.swift is necessary for swift_test rules.
-	// rules_swift_package_manager does not currently support generating rules_apple targets.
+	// swift_gazelle_plugin does not currently support generating rules_apple targets.
 	// However, applications using Apple's UI frameworks can use the @main directive.
 	// To build these with rules_apple, we must first compile a swift_library target,
 	// and then pass this as a dependency to the application or extension target.

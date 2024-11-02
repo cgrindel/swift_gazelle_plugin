@@ -5,8 +5,8 @@ import (
 
 	"github.com/bazelbuild/bazel-gazelle/label"
 	"github.com/bazelbuild/bazel-gazelle/rule"
-	"github.com/cgrindel/rules_swift_package_manager/gazelle/internal/swift"
-	"github.com/cgrindel/rules_swift_package_manager/gazelle/internal/swiftpkg"
+	"github.com/cgrindel/swift_gazelle_plugin/gazelle/internal/swift"
+	"github.com/cgrindel/swift_gazelle_plugin/gazelle/internal/swiftpkg"
 	"github.com/stretchr/testify/assert"
 )
 

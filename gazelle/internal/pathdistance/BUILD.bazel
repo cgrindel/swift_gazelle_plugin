@@ -13,7 +13,7 @@ go_test(
     name = "pathdistance_test",
     srcs = ["pathdistance_test.go"],
     deps = [
-        "@com_github_cgrindel_rules_swift_package_manager//gazelle/internal/pathdistance:go_default_library",
+        "@com_github_cgrindel_swift_gazelle_plugin//gazelle/internal/pathdistance:go_default_library",
         "@com_github_stretchr_testify//assert:go_default_library",
     ],
 )

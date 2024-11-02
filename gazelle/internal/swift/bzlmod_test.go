@@ -3,7 +3,7 @@ package swift_test
 import (
 	"testing"
 
-	"github.com/cgrindel/rules_swift_package_manager/gazelle/internal/swift"
+	"github.com/cgrindel/swift_gazelle_plugin/gazelle/internal/swift"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -33,7 +33,7 @@ func TestBzlmodStanzas(t *testing.T) {
 	actual, err := swift.BzlmodStanzas(di, "path/to/root", "path/to/root/swift_deps_index.json")
 	assert.NoError(t, err)
 	expected := `swift_deps = use_extension(
-    "@rules_swift_package_manager//:extensions.bzl",
+    "@swift_gazelle_plugin//:extensions.bzl",
     "swift_deps",
 )
 swift_deps.from_file(
@@ -74,7 +74,7 @@ func TestBzlmodStanzasWithCustomDepsIndex(t *testing.T) {
 	actual, err := swift.BzlmodStanzas(di, "path/to/root", "path/to/root/swift/deps_index.json")
 	assert.NoError(t, err)
 	expected := `swift_deps = use_extension(
-    "@rules_swift_package_manager//:extensions.bzl",
+    "@swift_gazelle_plugin//:extensions.bzl",
     "swift_deps",
 )
 swift_deps.from_file(

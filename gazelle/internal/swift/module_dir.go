@@ -4,7 +4,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/cgrindel/rules_swift_package_manager/gazelle/internal/pathdistance"
+	"github.com/cgrindel/swift_gazelle_plugin/gazelle/internal/pathdistance"
 )
 
 var moduleParentDirNames = []string{

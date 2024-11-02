@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"sort"
 
-	"github.com/cgrindel/rules_swift_package_manager/gazelle/internal/spdesc"
-	"github.com/cgrindel/rules_swift_package_manager/gazelle/internal/spdump"
-	"github.com/cgrindel/rules_swift_package_manager/gazelle/internal/swiftbin"
+	"github.com/cgrindel/swift_gazelle_plugin/gazelle/internal/spdesc"
+	"github.com/cgrindel/swift_gazelle_plugin/gazelle/internal/spdump"
+	"github.com/cgrindel/swift_gazelle_plugin/gazelle/internal/swiftbin"
 	mapset "github.com/deckarep/golang-set/v2"
 )
 
