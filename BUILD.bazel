@@ -108,7 +108,7 @@ execute_binary(
         "mod",
         "tidy",
     ],
-    binary = "@io_bazel_rules_go//go",
+    binary = "@rules_go//go",
     execute_in_workspace = True,
 )
 
@@ -120,7 +120,7 @@ execute_binary(
         "-u",
         "./...",
     ],
-    binary = "@io_bazel_rules_go//go",
+    binary = "@rules_go//go",
     execute_in_workspace = True,
 )
 
