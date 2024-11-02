@@ -8,10 +8,10 @@ import (
 	"github.com/bazelbuild/bazel-gazelle/config"
 	"github.com/bazelbuild/bazel-gazelle/label"
 	"github.com/bazelbuild/bazel-gazelle/language"
-	"github.com/cgrindel/rules_swift_package_manager/gazelle/internal/swift"
-	"github.com/cgrindel/rules_swift_package_manager/gazelle/internal/swiftbin"
-	"github.com/cgrindel/rules_swift_package_manager/gazelle/internal/swiftcfg"
-	"github.com/cgrindel/rules_swift_package_manager/gazelle/internal/swiftpkg"
+	"github.com/cgrindel/swift_gazelle_plugin/gazelle/internal/swift"
+	"github.com/cgrindel/swift_gazelle_plugin/gazelle/internal/swiftbin"
+	"github.com/cgrindel/swift_gazelle_plugin/gazelle/internal/swiftcfg"
+	"github.com/cgrindel/swift_gazelle_plugin/gazelle/internal/swiftpkg"
 	"github.com/stretchr/testify/assert"
 )
 

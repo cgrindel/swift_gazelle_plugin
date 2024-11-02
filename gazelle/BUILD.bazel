@@ -33,7 +33,7 @@ go_library(
         "lang.go",
         "resolve.go",
     ],
-    importpath = "github.com/cgrindel/rules_swift_package_manager/gazelle",
+    importpath = "github.com/cgrindel/swift_gazelle_plugin/gazelle",
     visibility = ["//visibility:public"],
     deps = [
         "//gazelle/internal/reslog",

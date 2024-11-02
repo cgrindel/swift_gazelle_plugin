@@ -10,7 +10,7 @@ go_library(
         "pin_store_v1.go",
         "pin_store_v2.go",
     ],
-    importpath = "github.com/cgrindel/rules_swift_package_manager/gazelle/internal/spreso",
+    importpath = "github.com/cgrindel/swift_gazelle_plugin/gazelle/internal/spreso",
     visibility = ["//gazelle:go_packages"],
     deps = ["//gazelle/internal/jsonutils"],
 )
@@ -25,6 +25,7 @@ go_test(
     ],
     deps = [
         ":spreso",
+        "@com_github_cgrindel_rules_swift_package_manager//gazelle/internal/spreso:go_default_library",
         "@com_github_stretchr_testify//assert:go_default_library",
     ],
 )

@@ -2,7 +2,7 @@ package gazelle
 
 import (
 	"github.com/bazelbuild/bazel-gazelle/rule"
-	"github.com/cgrindel/rules_swift_package_manager/gazelle/internal/swift"
+	"github.com/cgrindel/swift_gazelle_plugin/gazelle/internal/swift"
 )
 
 var kinds = map[string]rule.KindInfo{

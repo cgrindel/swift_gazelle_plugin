@@ -4,8 +4,8 @@ import (
 	"os"
 	"testing"
 
-	"github.com/cgrindel/rules_swift_package_manager/gazelle/internal/swiftbin"
-	"github.com/cgrindel/rules_swift_package_manager/gazelle/internal/swiftpkg"
+	"github.com/cgrindel/swift_gazelle_plugin/gazelle/internal/swiftbin"
+	"github.com/cgrindel/swift_gazelle_plugin/gazelle/internal/swiftpkg"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -195,7 +195,7 @@ const packageInfoJSONStr = `
     }
   ],
   "name": "swift-composable-architecture",
-  "path": "/private/var/tmp/_bazel_chuck/160d4d71af423ac712350c0996bc3c43/external/rules_swift_package_manager~~swift_deps~swiftpkg_swift_composable_architecture",
+  "path": "/private/var/tmp/_bazel_chuck/160d4d71af423ac712350c0996bc3c43/external/swift_gazelle_plugin~~swift_deps~swiftpkg_swift_composable_architecture",
   "platforms": [
     {
       "name": "ios",

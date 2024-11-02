@@ -3,7 +3,7 @@ package updmarker_test
 import (
 	"testing"
 
-	"github.com/cgrindel/rules_swift_package_manager/gazelle/internal/updmarker"
+	"github.com/cgrindel/swift_gazelle_plugin/gazelle/internal/updmarker"
 	"github.com/stretchr/testify/assert"
 )
 

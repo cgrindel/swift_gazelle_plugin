@@ -4,7 +4,7 @@ load("@rules_go//go:def.bzl", "go_library", "go_test")
 go_library(
     name = "pathdistance",
     srcs = ["pathdistance.go"],
-    importpath = "github.com/cgrindel/rules_swift_package_manager/gazelle/internal/pathdistance",
+    importpath = "github.com/cgrindel/swift_gazelle_plugin/gazelle/internal/pathdistance",
     visibility = ["//gazelle:go_packages"],
     deps = ["@org_golang_x_exp//slices:go_default_library"],
 )
@@ -13,7 +13,7 @@ go_test(
     name = "pathdistance_test",
     srcs = ["pathdistance_test.go"],
     deps = [
-        ":pathdistance",
+        "@com_github_cgrindel_rules_swift_package_manager//gazelle/internal/pathdistance:go_default_library",
         "@com_github_stretchr_testify//assert:go_default_library",
     ],
 )

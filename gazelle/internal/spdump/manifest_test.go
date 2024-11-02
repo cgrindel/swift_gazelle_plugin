@@ -3,7 +3,7 @@ package spdump_test
 import (
 	"testing"
 
-	"github.com/cgrindel/rules_swift_package_manager/gazelle/internal/spdump"
+	"github.com/cgrindel/swift_gazelle_plugin/gazelle/internal/spdump"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -115,7 +115,7 @@ const swiftPackageJSONStr = `
   "name" : "MySwiftPackage",
   "packageKind" : {
     "root" : [
-      "/Users/chuck/code/cgrindel/rules_swift_package_manager/gh008_simple_package_gen/examples/MySwiftPackage"
+      "/Users/chuck/code/cgrindel/swift_gazelle_plugin/gh008_simple_package_gen/examples/MySwiftPackage"
     ]
   },
   "pkgConfig" : null,

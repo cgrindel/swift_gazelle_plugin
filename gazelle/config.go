@@ -8,9 +8,9 @@ import (
 
 	"github.com/bazelbuild/bazel-gazelle/config"
 	"github.com/bazelbuild/bazel-gazelle/rule"
-	"github.com/cgrindel/rules_swift_package_manager/gazelle/internal/reslog"
-	"github.com/cgrindel/rules_swift_package_manager/gazelle/internal/swiftbin"
-	"github.com/cgrindel/rules_swift_package_manager/gazelle/internal/swiftcfg"
+	"github.com/cgrindel/swift_gazelle_plugin/gazelle/internal/reslog"
+	"github.com/cgrindel/swift_gazelle_plugin/gazelle/internal/swiftbin"
+	"github.com/cgrindel/swift_gazelle_plugin/gazelle/internal/swiftcfg"
 )
 
 // Register Flags

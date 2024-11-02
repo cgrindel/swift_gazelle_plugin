@@ -1,10 +1,10 @@
-"""Golang dependencies for the `rules_swift_package_manager` repository."""
+"""Golang dependencies for the `swift_gazelle_plugin` repository."""
 
 load("@bazel_tools//tools/build_defs/repo:utils.bzl", "maybe")
 load("@gazelle//:deps.bzl", "go_repository")
 
 def swift_bazel_go_dependencies():
-    """Declare the Go dependencies for `rules_swift_package_manager`."""
+    """Declare the Go dependencies for `swift_gazelle_plugin`."""
     maybe(
         go_repository,
         name = "co_honnef_go_tools",
@@ -93,14 +93,6 @@ def swift_bazel_go_dependencies():
         importpath = "github.com/client9/misspell",
         sum = "h1:ta993UF76GwbvJcIo3Y68y/M3WxlpEHPWIGDkJYwzJI=",
         version = "v0.3.4",
-    )
-    maybe(
-        go_repository,
-        name = "com_github_cpuguy83_go_md2man_v2",
-        build_external = "external",
-        importpath = "github.com/cpuguy83/go-md2man/v2",
-        sum = "h1:wfIWP927BUkWJb2NmU/kNDYIBTh/ziUX91+lVfRxZq4=",
-        version = "v2.0.4",
     )
     maybe(
         go_repository,
@@ -205,14 +197,6 @@ def swift_bazel_go_dependencies():
         importpath = "github.com/prometheus/client_model",
         sum = "h1:gQz4mCbXsO+nc9n1hCxHcGA3Zx3Eo+UHZoInFGUIXNM=",
         version = "v0.0.0-20190812154241-14fe0d1b01d4",
-    )
-    maybe(
-        go_repository,
-        name = "com_github_russross_blackfriday_v2",
-        build_external = "external",
-        importpath = "github.com/russross/blackfriday/v2",
-        sum = "h1:JIOH55/0cWyOuilr9/qlrm0BSXldqnqwMsf35Ld67mk=",
-        version = "v2.1.0",
     )
     maybe(
         go_repository,

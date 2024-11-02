@@ -1,6 +1,6 @@
 package swiftpkg
 
-import "github.com/cgrindel/rules_swift_package_manager/gazelle/internal/spdesc"
+import "github.com/cgrindel/swift_gazelle_plugin/gazelle/internal/spdesc"
 
 // A Platform represents a Swift package platform.
 type Platform struct {
