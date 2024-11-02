@@ -1,4 +1,3 @@
-load("@bazel_gazelle//:def.bzl", "DEFAULT_LANGUAGES", "gazelle", "gazelle_binary")
 load("@bazel_skylib//:bzl_library.bzl", "bzl_library")
 load("@cgrindel_bazel_starlib//bzlformat:defs.bzl", "bzlformat_missing_pkgs", "bzlformat_pkg")
 load("@cgrindel_bazel_starlib//bzltidy:defs.bzl", "tidy", "tidy_all")
@@ -10,6 +9,8 @@ load("@cgrindel_bazel_starlib//updatesrc:defs.bzl", "updatesrc_update_all")
 #     "integration_test_utils",
 # )
 # load("//ci:defs.bzl", "ci_workflow")
+
+load("@gazelle//:def.bzl", "DEFAULT_LANGUAGES", "gazelle", "gazelle_binary")
 
 # Allow docs to access the extensions.bzl
 # exports_files(["extensions.bzl"])
@@ -80,7 +81,7 @@ gazelle_binary(
 # gazelle:prefix github.com/cgrindel/swift_gazelle_plugin
 # gazelle:go_naming_convention import
 # gazelle:go_naming_convention_external go_default_library
-# gazelle:resolve_regexp go ^github.com/bazelbuild/bazel-gazelle/(.*)$ @bazel_gazelle//$1:go_default_library
+# gazelle:resolve_regexp go ^github.com/bazelbuild/bazel-gazelle/(.*)$ @gazelle//$1:go_default_library
 gazelle(
     name = "update_build_files",
     command = "fix",
@@ -128,7 +129,7 @@ bzl_library(
     name = "go_deps",
     srcs = ["go_deps.bzl"],
     visibility = ["//visibility:public"],
-    deps = ["@bazel_gazelle//:deps"],
+    deps = ["@gazelle//:deps"],
 )
 
 # MARK: - Markdown
