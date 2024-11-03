@@ -1,0 +1,17 @@
+load("@build_bazel_rules_swift//swift:swift.bzl", "swift_binary")
+load("@cgrindel_bazel_starlib//bzlformat:defs.bzl", "bzlformat_pkg")
+
+swift_binary(
+    name = "MyExecutable",
+    srcs = ["MyExecutable.swift"],
+    module_name = "MyExecutable",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//Sources/MyLibrary",
+        "//Sources/System",
+        "@swiftpkg_swift_argument_parser//:ArgumentParser",
+        "@swiftpkg_swift_log//:Logging",
+    ],
+)
+
+bzlformat_pkg(name = "bzlformat")
