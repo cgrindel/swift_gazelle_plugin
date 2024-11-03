@@ -4,16 +4,7 @@ load("@cgrindel_bazel_starlib//bzltidy:defs.bzl", "tidy", "tidy_all")
 load("@cgrindel_bazel_starlib//markdown:defs.bzl", "markdown_pkg")
 load("@cgrindel_bazel_starlib//shlib/rules:execute_binary.bzl", "execute_binary")
 load("@cgrindel_bazel_starlib//updatesrc:defs.bzl", "updatesrc_update_all")
-# load(
-#     "@rules_bazel_integration_test//bazel_integration_test:defs.bzl",
-#     "integration_test_utils",
-# )
-# load("//ci:defs.bzl", "ci_workflow")
-
 load("@gazelle//:def.bzl", "DEFAULT_LANGUAGES", "gazelle", "gazelle_binary")
-
-# Allow docs to access the extensions.bzl
-# exports_files(["extensions.bzl"])
 
 # MARK: - Bazel Starlark Lint and Formatting
 
@@ -155,72 +146,6 @@ filegroup(
     # Include every package that is required by the child workspaces.
     srcs = [
         ":all_files",
-        # "//ci:all_files",
-        # "//ci/internal:all_files",
-        # "//config_settings/bazel/apple_platform_type:all_files",
-        # "//config_settings/bazel/compilation_mode:all_files",
-        # "//config_settings/spm/configuration:all_files",
-        # "//config_settings/spm/platform:all_files",
-        # "//config_settings/spm/platform_configuration:all_files",
-        # "//gazelle:all_files",
-        # "//gazelle/internal/jsonutils:all_files",
-        # "//gazelle/internal/pathdistance:all_files",
-        # "//gazelle/internal/reslog:all_files",
-        # "//gazelle/internal/spdesc:all_files",
-        # "//gazelle/internal/spdump:all_files",
-        # "//gazelle/internal/spreso:all_files",
-        # "//gazelle/internal/stringslices:all_files",
-        # "//gazelle/internal/swift:all_files",
-        # "//gazelle/internal/swiftbin:all_files",
-        # "//gazelle/internal/swiftcfg:all_files",
-        # "//gazelle/internal/swiftpkg:all_files",
-        # "//gazelle/internal/updmarker:all_files",
-        # "//swiftpkg:all_files",
-        # "//swiftpkg/bzlmod:all_files",
-        # "//swiftpkg/internal:all_files",
-        # "//swiftpkg/internal/modulemap_parser:all_files",
-        # "//tools/swift_deps_index:all_files",
-        # "//tools/swift_deps_index/cmd:all_files",
     ],
     visibility = ["//:__subpackages__"],
 )
-
-# test_suite(
-#     name = "smoke_integration_tests",
-#     tags = integration_test_utils.DEFAULT_INTEGRATION_TEST_TAGS,
-#     tests = [
-#         "//bzlmod:e2e_test",
-#         "//examples:smoke_integration_tests",
-#         "//release:archive_test",
-#     ],
-#     visibility = ["//:__subpackages__"],
-# )
-
-# test_suite(
-#     name = "all_integration_tests",
-#     tags = integration_test_utils.DEFAULT_INTEGRATION_TEST_TAGS,
-#     tests = [
-#         ":smoke_integration_tests",
-#         "//examples:all_integration_tests",
-#     ],
-#     visibility = ["//:__subpackages__"],
-# )
-
-# MARK: - CI Workflow
-
-# ci_workflow(
-#     name = "ci_workflow",
-#     test_params = [
-#         "//bzlmod:e2e_test_params",
-#         "//release:archive_test_params",
-#         "//examples:all_example_test_params",
-#     ],
-#     workflow_yml = ".github/workflows/ci.yml",
-# )
-
-# bzl_library(
-#     name = "extensions",
-#     srcs = ["extensions.bzl"],
-#     visibility = ["//visibility:public"],
-#     deps = ["//swiftpkg/bzlmod:swift_deps"],
-# )
