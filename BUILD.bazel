@@ -10,9 +10,7 @@ load("@gazelle//:def.bzl", "DEFAULT_LANGUAGES", "gazelle", "gazelle_binary")
 
 bzlformat_pkg(name = "bzlformat")
 
-bzlformat_missing_pkgs(
-    name = "bzlformat_missing_pkgs",
-)
+bzlformat_missing_pkgs(name = "bzlformat_missing_pkgs")
 
 # MARK: - Tidy / Update Source Files
 
