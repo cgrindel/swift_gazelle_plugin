@@ -25,8 +25,7 @@ go_test(
     ],
     deps = [
         ":spreso",
-        "@com_github_cgrindel_swift_gazelle_plugin//gazelle/internal/spreso:go_default_library",
-        "@com_github_stretchr_testify//assert:go_default_library",
+        "@com_github_stretchr_testify//assert",
     ],
 )
 

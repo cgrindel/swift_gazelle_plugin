@@ -96,14 +96,6 @@ def swift_bazel_go_dependencies():
     )
     maybe(
         go_repository,
-        name = "com_github_creasty_defaults",
-        build_external = "external",
-        importpath = "github.com/creasty/defaults",
-        sum = "h1:z27FJxCAa0JKt3utc0sCImAEb+spPucmKoOdLHvHYKk=",
-        version = "v1.8.0",
-    )
-    maybe(
-        go_repository,
         name = "com_github_davecgh_go_spew",
         build_external = "external",
         importpath = "github.com/davecgh/go-spew",
@@ -176,14 +168,6 @@ def swift_bazel_go_dependencies():
     )
     maybe(
         go_repository,
-        name = "com_github_inconshreveable_mousetrap",
-        build_external = "external",
-        importpath = "github.com/inconshreveable/mousetrap",
-        sum = "h1:wN+x4NVGpMsO7ErUn/mUI3vEoE6Jt13X2s0bqwp9tc8=",
-        version = "v1.1.0",
-    )
-    maybe(
-        go_repository,
         name = "com_github_pmezard_go_difflib",
         build_external = "external",
         importpath = "github.com/pmezard/go-difflib",
@@ -197,22 +181,6 @@ def swift_bazel_go_dependencies():
         importpath = "github.com/prometheus/client_model",
         sum = "h1:gQz4mCbXsO+nc9n1hCxHcGA3Zx3Eo+UHZoInFGUIXNM=",
         version = "v0.0.0-20190812154241-14fe0d1b01d4",
-    )
-    maybe(
-        go_repository,
-        name = "com_github_spf13_cobra",
-        build_external = "external",
-        importpath = "github.com/spf13/cobra",
-        sum = "h1:e5/vxKd/rZsfSJMUX1agtjeTDf+qv1/JdBF8gg5k9ZM=",
-        version = "v1.8.1",
-    )
-    maybe(
-        go_repository,
-        name = "com_github_spf13_pflag",
-        build_external = "external",
-        importpath = "github.com/spf13/pflag",
-        sum = "h1:iy+VFUOCP1a+8yFto/drg2CJ5u0yRoB7fZw3DKv/JXA=",
-        version = "v1.0.5",
     )
     maybe(
         go_repository,

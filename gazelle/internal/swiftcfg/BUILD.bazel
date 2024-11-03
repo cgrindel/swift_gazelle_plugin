@@ -39,7 +39,7 @@ go_test(
         "//gazelle/internal/swift",
         "//gazelle/internal/swiftbin",
         "//gazelle/internal/swiftpkg",
-        "@com_github_stretchr_testify//assert:go_default_library",
+        "@com_github_stretchr_testify//assert",
         "@gazelle//config:go_default_library",
         "@gazelle//label:go_default_library",
         "@gazelle//language:go_default_library",

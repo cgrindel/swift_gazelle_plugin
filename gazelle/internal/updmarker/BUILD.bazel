@@ -13,7 +13,7 @@ go_test(
     srcs = ["updater_test.go"],
     deps = [
         ":updmarker",
-        "@com_github_stretchr_testify//assert:go_default_library",
+        "@com_github_stretchr_testify//assert",
     ],
 )
 
