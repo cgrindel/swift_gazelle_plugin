@@ -13,6 +13,13 @@ assert_match() {
   [[ "${actual}" =~ ${pattern} ]] || (echo >&2 "${err_msg}" && exit 1)
 }
 
+# DEBUG BEGIN
+echo >&2 "*** CHUCK $(basename "${BASH_SOURCE[0]}") RUNFILES_DIR: ${RUNFILES_DIR}" 
+echo >&2 "*** CHUCK $(basename "${BASH_SOURCE[0]}") bazel: ${bazel}" 
+set -x
+# "${bazel}" run //:update_all
+# DEBUG END
+
 # Generate Swift external deps and update build files
 "${bazel}" run //:tidy
 

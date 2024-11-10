@@ -144,6 +144,19 @@ filegroup(
     # Include every package that is required by the child workspaces.
     srcs = [
         ":all_files",
+        "//gazelle:all_files",
+        "//gazelle/internal/jsonutils:all_files",
+        "//gazelle/internal/pathdistance:all_files",
+        "//gazelle/internal/reslog:all_files",
+        "//gazelle/internal/spdesc:all_files",
+        "//gazelle/internal/spdump:all_files",
+        "//gazelle/internal/spreso:all_files",
+        "//gazelle/internal/stringslices:all_files",
+        "//gazelle/internal/swift:all_files",
+        "//gazelle/internal/swiftbin:all_files",
+        "//gazelle/internal/swiftcfg:all_files",
+        "//gazelle/internal/swiftpkg:all_files",
+        "//gazelle/internal/updmarker:all_files",
     ],
     visibility = ["//:__subpackages__"],
 )
