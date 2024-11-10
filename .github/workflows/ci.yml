@@ -41,11 +41,45 @@ jobs:
           buildbuddy_api_key: ${{ secrets.BUILDBUDDY_API_KEY }}
       - uses: ./.github/actions/tidy_and_test
 
+  integration_test_matrix:
+    strategy:
+      fail-fast: false
+      matrix:
+        runner:
+          - macos-14
+          - ubuntu-22.04
+        test: 
+          - '@@//examples:bzlmod_test'
+
+    runs-on: ${{ matrix.runner }}
+    env:
+      CC: clang
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/set_up_ubuntu
+        if: ${{ startsWith(matrix.runner, 'ubuntu') }}
+        with:
+          repo_name: swift_gazelle_plugin
+          ubuntu_version: "22.04"
+      - uses: ./.github/actions/set_up_macos
+        if: ${{ startsWith(matrix.runner, 'macos') }}
+        with:
+          repo_name: swift_gazelle_plugin
+          test_target: ${{ matrix.test }}
+      - uses: ./.github/actions/configure_remote_cache_auth
+        with:
+          buildbuddy_api_key: ${{ secrets.BUILDBUDDY_API_KEY }}
+      - uses: ./.github/actions/execute_test
+        with:
+          bzlmod_enabled: ${{ matrix.bzlmod_enabled }}
+          test_target: ${{ matrix.test }}
+
+
   all_ci_tests:
     runs-on: ubuntu-latest
     needs:
       - tidy_and_test_matrix
-      # - integration_test_matrix
+      - integration_test_matrix
     if: ${{ always() }}
     steps:
       - uses: cgrindel/gha_join_jobs@v1
