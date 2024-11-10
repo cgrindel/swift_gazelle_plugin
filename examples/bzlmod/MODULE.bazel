@@ -1,3 +1,12 @@
+bazel_dep(
+    name = "swift_gazelle_plugin",
+    version = "0.0.0",
+)
+local_path_override(
+    module_name = "swift_gazelle_plugin",
+    path = "../..",
+)
+
 bazel_dep(name = "rules_swift_package_manager", version = "0.40.1")
 bazel_dep(name = "cgrindel_bazel_starlib", version = "0.21.0")
 bazel_dep(name = "bazel_skylib", version = "1.7.1")
