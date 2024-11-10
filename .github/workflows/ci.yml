@@ -49,8 +49,8 @@ jobs:
         runner:
           - macos-14
           - ubuntu-22.04
-        test: 
-          - '@@//examples:bzlmod_test_bazel_.bazelversion'
+        test_workspace_dir: 
+          - 'examples/bzlmod'
 
     runs-on: ${{ matrix.runner }}
     env:
@@ -72,8 +72,7 @@ jobs:
           buildbuddy_api_key: ${{ secrets.BUILDBUDDY_API_KEY }}
       - uses: ./.github/actions/execute_integration_test
         with:
-          bzlmod_enabled: ${{ matrix.bzlmod_enabled }}
-          test_target: ${{ matrix.test }}
+          test_workspace_dir: ${{ matrix.test_workspace_dir }}
 
 
   all_ci_tests:
