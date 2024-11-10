@@ -49,7 +49,7 @@ jobs:
           - macos-14
           - ubuntu-22.04
         test: 
-          - '@@//examples:bzlmod_test'
+          - '@@//examples:bzlmod_test_bazel_.bazelversion'
 
     runs-on: ${{ matrix.runner }}
     env:
