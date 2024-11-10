@@ -70,7 +70,7 @@ jobs:
       - uses: ./.github/actions/configure_remote_cache_auth
         with:
           buildbuddy_api_key: ${{ secrets.BUILDBUDDY_API_KEY }}
-      - uses: ./.github/actions/execute_test
+      - uses: ./.github/actions/execute_integration_test
         with:
           bzlmod_enabled: ${{ matrix.bzlmod_enabled }}
           test_target: ${{ matrix.test }}
