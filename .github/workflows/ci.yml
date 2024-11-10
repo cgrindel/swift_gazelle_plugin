@@ -51,6 +51,8 @@ jobs:
           - ubuntu-22.04
         test_workspace_dir: 
           - 'examples/bzlmod'
+          - 'examples/grpc_example'
+          - 'examples/grpc_package_example'
 
     runs-on: ${{ matrix.runner }}
     env:
