@@ -11,7 +11,7 @@ go_library(
     visibility = ["//visibility:private"],
     deps = [
         "@com_github_bazelbuild_buildtools//build",
-        "@gazelle//rule:go_default_library",
+        "@gazelle//rule",
         "@org_golang_x_exp//slices",
     ],
 )
