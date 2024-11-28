@@ -1,34 +1,53 @@
 name: Execute Integration Test
 
 inputs:
-  test_workspace_dir:
-    description: The directory where to run the test.
+  test_target:
+    description: The test target to execute.
     required: true
-  test_script:
-    description: The script to execute in the test directory.
-    default: 'do_test'
 
 runs:
   using: composite
   steps:
-    - name: Execute Integration Test
+    - name: Execute Test
       shell: bash
       env:
-        TEST_WORKSPACE_DIR: ${{ inputs.test_workspace_dir }}
-        TEST_SCRIPT: ${{ inputs.test_script }}
+        TEST_TARGET: ${{ inputs.test_target }}
       run: |
-        if [[ ! -d "${TEST_WORKSPACE_DIR}" ]]; then
-          echo >&2 "The test workspace directory was not found: ${TEST_WORKSPACE_DIR}"
-        fi
+        bazelisk test "${TEST_TARGET}"
 
-        # Copy the .bazelversion file to the test directory.
-        cp .bazelversion "${TEST_WORKSPACE_DIR}/"
 
-        # Change to the test directory
-        cd "${TEST_WORKSPACE_DIR}"
+# name: Execute Integration Test
 
-        # Execute the test script
-        if [[ ! -e "${TEST_SCRIPT}" ]]; then
-          echo >&2 "The test script was not found: ${TEST_WORKSPACE_DIR}/${TEST_SCRIPT}"
-        fi
-        "./${TEST_SCRIPT}"
+# inputs:
+#   test_workspace_dir:
+#     description: The directory where to run the test.
+#     required: true
+#   test_script:
+#     description: The script to execute in the test directory.
+#     default: 'do_test'
+
+# runs:
+#   using: composite
+#   steps:
+#     - name: Execute Integration Test
+#       shell: bash
+#       env:
+#         TEST_WORKSPACE_DIR: ${{ inputs.test_workspace_dir }}
+#         TEST_SCRIPT: ${{ inputs.test_script }}
+#       run: |
+
+#         if [[ ! -d "${TEST_WORKSPACE_DIR}" ]]; then
+#           echo >&2 "The test workspace directory was not found: ${TEST_WORKSPACE_DIR}"
+#         fi
+
+#         # Copy the .bazelversion file to the test directory.
+#         cp .bazelversion "${TEST_WORKSPACE_DIR}/"
+
+#         # Change to the test directory
+#         cd "${TEST_WORKSPACE_DIR}"
+
+#         # Execute the test script
+#         if [[ ! -e "${TEST_SCRIPT}" ]]; then
+#           echo >&2 "The test script was not found: ${TEST_WORKSPACE_DIR}/${TEST_SCRIPT}"
+#         fi
+#         "./${TEST_SCRIPT}"

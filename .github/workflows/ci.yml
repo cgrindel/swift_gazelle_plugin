@@ -49,10 +49,14 @@ jobs:
         runner:
           - macos-14
           - ubuntu-22.04
-        test_workspace_dir: 
-          - 'examples/bzlmod'
-          - 'examples/grpc_example'
-          - 'examples/grpc_package_example'
+        test_target:
+          - '//examples:bzlmod_test_bazel_.bazelversion'
+          - '//examples:grpc_example_test_bazel_.bazelversion'
+          - '//examples:grpc_package_example_test_bazel_.bazelversion'
+        # test_workspace_dir: 
+        #   - 'examples/bzlmod'
+        #   - 'examples/grpc_example'
+        #   - 'examples/grpc_package_example'
 
     runs-on: ${{ matrix.runner }}
     env:
@@ -74,7 +78,8 @@ jobs:
           buildbuddy_api_key: ${{ secrets.BUILDBUDDY_API_KEY }}
       - uses: ./.github/actions/execute_integration_test
         with:
-          test_workspace_dir: ${{ matrix.test_workspace_dir }}
+          test_target: ${{ matrix.test_target }}
+          # test_workspace_dir: ${{ matrix.test_workspace_dir }}
 
 
   all_ci_tests:
