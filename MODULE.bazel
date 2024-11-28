@@ -55,10 +55,3 @@ use_repo(
     "bazel_binaries_bazelisk",
     "build_bazel_bazel_.bazelversion",
 )
-
-# DEBUG BEGIN
-local_path_override(
-    module_name = "rules_bazel_integration_test",
-    path = "/Users/chuck/code/bazel-contrib/rules_bazel_integration_test/permission_error",
-)
-# DEBUG END
