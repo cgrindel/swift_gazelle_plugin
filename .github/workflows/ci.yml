@@ -47,7 +47,7 @@ jobs:
       fail-fast: false
       matrix:
         runner:
-          - macos-14
+          - macos-13
           - ubuntu-22.04
         test_target:
           - '//examples:bzlmod_test_bazel_.bazelversion'
