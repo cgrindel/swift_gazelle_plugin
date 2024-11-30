@@ -72,11 +72,6 @@ jobs:
       - uses: ./.github/actions/configure_remote_cache_auth
         with:
           buildbuddy_api_key: ${{ secrets.BUILDBUDDY_API_KEY }}
-      # # DEBUG BEGIN
-      # - name: Setup tmate session
-      #   uses: mxschmitt/action-tmate@v3
-      #   if: ${{ startsWith(matrix.runner, 'macos') }}
-      # # DEBUG END
       - uses: ./.github/actions/execute_integration_test
         with:
           test_target: ${{ matrix.test_target }}

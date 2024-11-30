@@ -16,7 +16,7 @@ bazel-*
 **/.netrc
 
 # Ignore the local.bazelrc
-local.bazelrc
+.bazelrc.local
 
 # Ignore vscode settings
 .vscode
