@@ -1,0 +1,49 @@
+load("@cgrindel_bazel_starlib//bzlformat:defs.bzl", "bzlformat_pkg")
+load("@rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "reslog",
+    srcs = [
+        "resolution_logger.go",
+        "rule_resolution.go",
+        "rule_resolution_summary.go",
+    ],
+    importpath = "github.com/cgrindel/swift_gazelle_plugin/gazelle/internal/reslog",
+    visibility = ["//gazelle:go_packages"],
+    deps = [
+        "//gazelle/internal/swift",
+        "@com_github_deckarep_golang_set_v2//:golang-set",
+        "@gazelle//label",
+        "@gazelle//resolve",
+        "@gazelle//rule",
+        "@in_gopkg_yaml_v3//:yaml_v3",
+        "@org_golang_x_exp//slices",
+    ],
+)
+
+go_test(
+    name = "reslog_test",
+    srcs = [
+        "resolution_logger_test.go",
+        "rule_resolution_test.go",
+    ],
+    deps = [
+        ":reslog",
+        "//gazelle/internal/swift",
+        "//gazelle/internal/swiftpkg",
+        "@com_github_stretchr_testify//assert",
+        "@gazelle//label",
+        "@gazelle//resolve",
+        "@gazelle//rule",
+    ],
+)
+
+bzlformat_pkg(name = "bzlformat")
+
+# MARK: - Integration Test
+
+filegroup(
+    name = "all_files",
+    srcs = glob(["*"]),
+    visibility = ["//:__subpackages__"],
+)

@@ -1,0 +1,25 @@
+load("@cgrindel_bazel_starlib//bzlformat:defs.bzl", "bzlformat_pkg")
+load("@rules_go//go:def.bzl", "go_binary", "go_library")
+
+go_library(
+    name = "update_go_repos_lib",
+    srcs = [
+        "deps_file.go",
+        "main.go",
+    ],
+    importpath = "github.com/cgrindel/swift_gazelle_plugin/tools/update_go_repos",
+    visibility = ["//visibility:private"],
+    deps = [
+        "@com_github_bazelbuild_buildtools//build",
+        "@gazelle//rule",
+        "@org_golang_x_exp//slices",
+    ],
+)
+
+go_binary(
+    name = "update_go_repos",
+    embed = [":update_go_repos_lib"],
+    visibility = ["//visibility:public"],
+)
+
+bzlformat_pkg(name = "bzlformat")

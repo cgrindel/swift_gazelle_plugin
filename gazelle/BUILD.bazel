@@ -1,0 +1,63 @@
+load("@cgrindel_bazel_starlib//bzlformat:defs.bzl", "bzlformat_pkg")
+load("@rules_go//go:def.bzl", "go_library", "go_path")
+
+package_group(
+    name = "go_packages",
+    packages = [
+        "//gazelle/...",
+        "//tools/swift_deps_index/...",
+    ],
+)
+
+# MARK: - Starlark
+
+bzlformat_pkg(name = "bzlformat")
+
+# MARK: - Integration Test
+
+filegroup(
+    name = "all_files",
+    srcs = glob(["*"]),
+    visibility = ["//:__subpackages__"],
+)
+
+# MARK: - Gazelle Plugin
+
+go_library(
+    name = "gazelle",
+    srcs = [
+        "config.go",
+        "doc.go",
+        "generate.go",
+        "kinds.go",
+        "lang.go",
+        "resolve.go",
+    ],
+    importpath = "github.com/cgrindel/swift_gazelle_plugin/gazelle",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//gazelle/internal/reslog",
+        "//gazelle/internal/stringslices",
+        "//gazelle/internal/swift",
+        "//gazelle/internal/swiftbin",
+        "//gazelle/internal/swiftcfg",
+        "@gazelle//config",
+        "@gazelle//label",
+        "@gazelle//language",
+        "@gazelle//pathtools",
+        "@gazelle//repo",
+        "@gazelle//resolve",
+        "@gazelle//rule",
+        "@org_golang_x_exp//slices",
+        "@org_golang_x_text//cases",
+        "@org_golang_x_text//language",
+    ],
+)
+
+go_path(
+    name = "godoc_root",
+    deps = [
+        ":gazelle",
+        "//gazelle/internal/jsonutils",
+    ],
+)

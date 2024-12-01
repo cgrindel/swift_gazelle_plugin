@@ -1,0 +1,46 @@
+name: Set Up ubuntu Runner
+description: Prepare ubuntu runner to execute tests.
+
+inputs:
+  repo_name:
+    description: The name of the GitHub repo.
+    required: true
+  ubuntu_version:
+    description: The version of Ubuntu for Swift download.
+    required: true
+  swift_release_tag:
+    description: The Swift release tag.
+    default: "swift-5.9.2-RELEASE"
+
+runs:
+  using: composite
+  steps:
+    # When running gazelle update-repos, gazelle looks for the Go tool on the
+    # system. The default version that is installed on the GH Linux runner is
+    # not compatible with the version in rules_go 0.43.0. As a workaround, the 
+    # following installs the version of Go that is listed in the go.mod file.
+    # Related to https://github.com/bazelbuild/bazel-gazelle/issues/1671
+    - uses: actions/setup-go@v5
+      with:
+        go-version-file: go.mod
+    - uses: cgrindel/gha_install_swift_on_ubuntu@v2
+      with:
+        swift_release_tag: ${{ inputs.swift_release_tag }}
+        ubuntu_version: ${{ inputs.ubuntu_version }}
+    - name: Install required system packages
+      shell: bash
+      run: |
+        sudo apt update
+        # zlib headers
+        sudo apt -y install zlib1g-dev
+    - name: Update local.bazelrc with Linux Flags
+      shell: bash
+      run: |
+        cat >> "local.bazelrc" <<EOF
+        # Need to expose the PATH so that the Swift toolchain can be found
+        build --action_env=PATH
+        EOF
+    - uses: cgrindel/gha_set_up_bazel@v1
+      with:
+        repo_name: ${{ inputs.repo_name }}
+

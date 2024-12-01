@@ -1,0 +1,26 @@
+load("@cgrindel_bazel_starlib//bzlformat:defs.bzl", "bzlformat_pkg")
+load("@rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "updmarker",
+    srcs = ["updater.go"],
+    importpath = "github.com/cgrindel/swift_gazelle_plugin/gazelle/internal/updmarker",
+    visibility = ["//gazelle:go_packages"],
+)
+
+go_test(
+    name = "updmarker_test",
+    srcs = ["updater_test.go"],
+    deps = [
+        ":updmarker",
+        "@com_github_stretchr_testify//assert",
+    ],
+)
+
+bzlformat_pkg(name = "bzlformat")
+
+filegroup(
+    name = "all_files",
+    srcs = glob(["*"]),
+    visibility = ["//:__subpackages__"],
+)

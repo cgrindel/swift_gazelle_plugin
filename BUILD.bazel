@@ -1,0 +1,185 @@
+load("@bazel_skylib//:bzl_library.bzl", "bzl_library")
+load("@cgrindel_bazel_starlib//bzlformat:defs.bzl", "bzlformat_missing_pkgs", "bzlformat_pkg")
+load("@cgrindel_bazel_starlib//bzltidy:defs.bzl", "tidy", "tidy_all")
+load("@cgrindel_bazel_starlib//markdown:defs.bzl", "markdown_pkg")
+load("@cgrindel_bazel_starlib//shlib/rules:execute_binary.bzl", "execute_binary")
+load("@cgrindel_bazel_starlib//updatesrc:defs.bzl", "updatesrc_update_all")
+load("@gazelle//:def.bzl", "DEFAULT_LANGUAGES", "gazelle", "gazelle_binary")
+load(
+    "@rules_bazel_integration_test//bazel_integration_test:defs.bzl",
+    "integration_test_utils",
+)
+
+# MARK: - Bazel Starlark Lint and Formatting
+
+bzlformat_pkg(name = "bzlformat")
+
+bzlformat_missing_pkgs(name = "bzlformat_missing_pkgs")
+
+# MARK: - Tidy / Update Source Files
+
+updatesrc_update_all(name = "update_all")
+
+tidy(
+    name = "tidy",
+    targets = [
+        # Remove the child workspace symlinks before doing some of the other
+        # operations that my experience infinite symlink expansion errors.
+        "@rules_bazel_integration_test//tools:remove_child_wksp_bazel_symlinks",
+        "@rules_bazel_integration_test//tools:update_deleted_packages",
+        ":bzlformat_missing_pkgs_fix",
+        ":update_all",
+        # Run go_mod_tidy before go_update_repos
+        ":go_mod_tidy",
+        ":go_update_repos",
+        ":update_build_files",
+    ],
+)
+
+# This is meant to be fast and convenient to quickly update the source files
+# with the latest.
+tidy(
+    name = "update_files",
+    targets = [
+        ":update_all",
+        ":update_build_files",
+    ],
+)
+
+tidy(
+    name = "upgrade_go_deps",
+    targets = [
+        ":go_get_latest",
+        ":go_mod_tidy",
+        ":go_update_repos",
+    ],
+)
+
+tidy_all(name = "tidy_all")
+
+tidy_all(
+    name = "tidy_modified",
+    mode = "modified",
+)
+
+# MARK: - Gazelle
+
+gazelle_binary(
+    name = "gazelle_bin",
+    languages = DEFAULT_LANGUAGES + [
+        "@bazel_skylib_gazelle_plugin//bzl",
+    ],
+)
+
+# gazelle:prefix github.com/cgrindel/swift_gazelle_plugin
+# gazelle:go_naming_convention import
+gazelle(
+    name = "update_build_files",
+    command = "fix",
+    gazelle = ":gazelle_bin",
+)
+
+execute_binary(
+    name = "go_update_repos",
+    arguments = [
+        "-gazelle_bin_target=//:gazelle_bin",
+        "-from_file=go.mod",
+        "-go_deps_file=go_deps.bzl",
+        "-macro_name=swift_bazel_go_dependencies",
+        "-build_external=external",
+    ],
+    binary = "//tools/update_go_repos",
+    execute_in_workspace = True,
+)
+
+# MARK: - Golang
+
+execute_binary(
+    name = "go_mod_tidy",
+    arguments = [
+        "mod",
+        "tidy",
+    ],
+    binary = "@rules_go//go",
+    execute_in_workspace = True,
+)
+
+execute_binary(
+    name = "go_get_latest",
+    arguments = [
+        "get",
+        "-t",
+        "-u",
+        "./...",
+    ],
+    binary = "@rules_go//go",
+    execute_in_workspace = True,
+)
+
+bzl_library(
+    name = "go_deps",
+    srcs = ["go_deps.bzl"],
+    visibility = ["//visibility:public"],
+    deps = ["@gazelle//:deps"],
+)
+
+# MARK: - Markdown
+
+markdown_pkg(name = "markdown")
+
+# MARK: - Integration Test
+
+filegroup(
+    name = "all_files",
+    srcs = glob(
+        ["*"],
+        exclude = [
+            ".git",
+            ".gitignore",
+        ],
+    ),
+    visibility = ["//:__subpackages__"],
+)
+
+# Files needed at runtime. Do not include any bzlmod e2e test files here. They
+# should only be added to the release archive (//release:archive).
+filegroup(
+    name = "runtime_files",
+    # Include every package that is required by the child workspaces.
+    srcs = [
+        ":all_files",
+        "//gazelle:all_files",
+        "//gazelle/internal/jsonutils:all_files",
+        "//gazelle/internal/pathdistance:all_files",
+        "//gazelle/internal/reslog:all_files",
+        "//gazelle/internal/spdesc:all_files",
+        "//gazelle/internal/spdump:all_files",
+        "//gazelle/internal/spreso:all_files",
+        "//gazelle/internal/stringslices:all_files",
+        "//gazelle/internal/swift:all_files",
+        "//gazelle/internal/swiftbin:all_files",
+        "//gazelle/internal/swiftcfg:all_files",
+        "//gazelle/internal/swiftpkg:all_files",
+        "//gazelle/internal/updmarker:all_files",
+    ],
+    visibility = ["//:__subpackages__"],
+)
+
+test_suite(
+    name = "smoke_integration_tests",
+    tags = integration_test_utils.DEFAULT_INTEGRATION_TEST_TAGS,
+    tests = [
+        "//examples:smoke_integration_tests",
+    ],
+    visibility = ["//:__subpackages__"],
+)
+
+test_suite(
+    name = "all_integration_tests",
+    tags = integration_test_utils.DEFAULT_INTEGRATION_TEST_TAGS,
+    tests = [
+        ":smoke_integration_tests",
+        "//examples:all_integration_tests",
+    ],
+    visibility = ["//:__subpackages__"],
+)

@@ -1,0 +1,16 @@
+name: Execute Integration Test
+
+inputs:
+  test_target:
+    description: The test target to execute.
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Execute Test
+      shell: bash
+      env:
+        TEST_TARGET: ${{ inputs.test_target }}
+      run: |
+        bazelisk test "${TEST_TARGET}"

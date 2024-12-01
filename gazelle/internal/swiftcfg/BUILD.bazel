@@ -1,0 +1,49 @@
+load("@cgrindel_bazel_starlib//bzlformat:defs.bzl", "bzlformat_pkg")
+load("@rules_go//go:def.bzl", "go_library", "go_test")
+
+# MARK: - Integration Test
+
+filegroup(
+    name = "all_files",
+    srcs = glob(["*"]),
+    visibility = ["//:__subpackages__"],
+)
+
+go_library(
+    name = "swiftcfg",
+    srcs = [
+        "doc.go",
+        "generate_rules_mode.go",
+        "module_files_collector.go",
+        "swift_config.go",
+    ],
+    importpath = "github.com/cgrindel/swift_gazelle_plugin/gazelle/internal/swiftcfg",
+    visibility = ["//gazelle:go_packages"],
+    deps = [
+        "//gazelle/internal/reslog",
+        "//gazelle/internal/swift",
+        "//gazelle/internal/swiftbin",
+        "@gazelle//config",
+        "@gazelle//language",
+    ],
+)
+
+go_test(
+    name = "swiftcfg_test",
+    srcs = [
+        "module_files_collector_test.go",
+        "swift_config_test.go",
+    ],
+    deps = [
+        ":swiftcfg",
+        "//gazelle/internal/swift",
+        "//gazelle/internal/swiftbin",
+        "//gazelle/internal/swiftpkg",
+        "@com_github_stretchr_testify//assert",
+        "@gazelle//config",
+        "@gazelle//label",
+        "@gazelle//language",
+    ],
+)
+
+bzlformat_pkg(name = "bzlformat")
