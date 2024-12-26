@@ -8,6 +8,15 @@ Swift source code..
 ## Table of Contents
 
 <!-- MARKDOWN TOC: BEGIN -->
+* [Quickstart](#quickstart)
+  * [1. Enable bzlmod](#1-enable-bzlmod)
+  * [2. Configure your `MODULE.bazel` to use swift_gazelle_plugin.](#2-configure-your-modulebazel-to-use-swift_gazelle_plugin)
+  * [3. Add Gazelle targets to `BUILD.bazel` at the root of your workspace.](#3-add-gazelle-targets-to-buildbazel-at-the-root-of-your-workspace)
+  * [4. Create or update Bazel build files for your project.](#4-create-or-update-bazel-build-files-for-your-project)
+  * [5. Build and test your project.](#5-build-and-test-your-project)
+  * [6. Check in `MODULE.bazel`.](#6-check-in-modulebazel)
+  * [10. Start coding](#10-start-coding)
+* [Tips and Tricks](#tips-and-tricks)
 <!-- MARKDOWN TOC: END -->
 
 ## Quickstart
