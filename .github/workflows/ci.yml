@@ -53,6 +53,7 @@ jobs:
           - '//examples:bzlmod_test_bazel_.bazelversion'
           - '//examples:grpc_example_test_bazel_.bazelversion'
           - '//examples:grpc_package_example_test_bazel_.bazelversion'
+          - '//examples:simple_test_bazel_.bazelversion'
 
     runs-on: ${{ matrix.runner }}
     env:
