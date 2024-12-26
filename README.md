@@ -1,6 +1,6 @@
 # Swift Gazelle Plugin for Bazel
 
-[![Build](https://github.com/cgrindel/swift_gazelle/actions/workflows/ci.yml/badge.svg?event=schedule)](https://github.com/cgrindel/swift_gazelle/actions/workflows/ci.yml)
+[![Build](https://github.com/cgrindel/swift_gazelle_plugin/actions/workflows/ci.yml/badge.svg?event=schedule)](https://github.com/cgrindel/swift_gazelle_plugin/actions/workflows/ci.yml)
 
 This repository contains a [Gazelle plugin] used to generate [rules_swift] targets based upon your
 Swift source code..
@@ -25,14 +25,14 @@ This repository supports [bzlmod].
 common --enable_bzlmod
 ```
 
-### 2. Configure your `MODULE.bazel` to use [swift_gazelle].
+### 2. Configure your `MODULE.bazel` to use [swift_gazelle_plugin].
 
-Add a dependency on `swift_gazelle`.
+Add a dependency on `swift_gazelle_plugin`.
 
 <!-- BEGIN MODULE SNIPPET -->
 
 ```python
-bazel_dep(name = "swift_gazelle", version = "0.0.0")
+bazel_dep(name = "swift_gazelle_plugin", version = "0.0.0")
 ```
 
 <!-- END MODULE SNIPPET -->
@@ -52,11 +52,11 @@ load("@gazelle//:def.bzl", "gazelle", "gazelle_binary")
 
 # This declaration builds a Gazelle binary that incorporates all of the Gazelle
 # plugins for the languages that you use in your workspace. In this example, we
-# are only listing the Gazelle plugin for Swift from swift_gazelle.
+# are only listing the Gazelle plugin for Swift from swift_gazelle_plugin.
 gazelle_binary(
     name = "gazelle_bin",
     languages = [
-        "@swift_gazelle//gazelle",
+        "@swift_gazelle_plugin//gazelle",
     ],
 )
 
@@ -121,5 +121,5 @@ The following are a few tips to consider as you work with your repository:
 
 [Gazelle plugin]: https://github.com/bazelbuild/bazel-gazelle/blob/master/extend.md
 [rules_swift]: https://github.com/bazelbuild/rules_swift
-[swift_gazelle]: https://github.com/cgrindel/swift_gazelle
+[swift_gazelle_plugin]: https://github.com/cgrindel/swift_gazelle_plugin
 [tidy]: https://github.com/cgrindel/bazel-starlib/blob/main/doc/bzltidy/rules_and_macros_overview.md#tidy
