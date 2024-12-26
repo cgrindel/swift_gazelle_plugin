@@ -31,6 +31,7 @@ DIR_NAMES = [
     "bzlmod",
     "grpc_example",
     "grpc_package_example",
+    "simple",
 ]
 
 [
