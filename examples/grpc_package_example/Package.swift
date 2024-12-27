@@ -3,7 +3,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "grpc_example",
+    name: "grpc_package_example",
     dependencies: [
         // These are the versions used by rules_swift
         .package(url: "https://github.com/grpc/grpc-swift.git", exact: "1.16.0"),
