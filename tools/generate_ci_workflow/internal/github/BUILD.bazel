@@ -16,7 +16,7 @@ go_test(
     name = "github_test",
     srcs = ["workflow_test.go"],
     deps = [
-        "//tools/generate_ci_workflow/internal/github",
+        ":github",
         "@com_github_stretchr_testify//assert",
         "@in_gopkg_yaml_v3//:yaml_v3",
     ],
