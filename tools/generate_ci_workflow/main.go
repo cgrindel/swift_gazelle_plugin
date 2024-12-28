@@ -24,7 +24,7 @@ func main() {
 	}
 }
 
-func run(ctx context.Context, stderr *os.File) error {
+func run(_ context.Context, _ *os.File) error {
 	var (
 		templatePath          string
 		intTestParamsJSONPath string
