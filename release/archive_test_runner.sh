@@ -48,4 +48,4 @@ tar -xf "${swift_gazelle_plugin_tar_gz}" -C "${workspace_dir}"
 
 # Test the extracted contents
 cd "${workspace_dir}"
-"${bazel}" test //examples:bzlmod_test_bazel_.bazelversion
+"${bazel}" test //bzlmod:e2e_test
