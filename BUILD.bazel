@@ -9,6 +9,7 @@ load(
     "@rules_bazel_integration_test//bazel_integration_test:defs.bzl",
     "integration_test_utils",
 )
+load("//ci:defs.bzl", "ci_workflow")
 
 # MARK: - Bazel Starlark Lint and Formatting
 
@@ -182,4 +183,14 @@ test_suite(
         "//examples:all_integration_tests",
     ],
     visibility = ["//:__subpackages__"],
+)
+
+# MARK: - CI Workflow
+
+ci_workflow(
+    name = "ci_workflow",
+    test_params = [
+        "//examples:all_example_test_params",
+    ],
+    workflow_yml = ".github/workflows/ci.yml",
 )
