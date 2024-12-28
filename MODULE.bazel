@@ -59,3 +59,11 @@ use_repo(
     "build_bazel_bazel_.bazelversion",
     "build_bazel_bazel_last_green",
 )
+
+# DEBUG BEGIN
+git_override(
+    module_name = "rules_bazel_integration_test",
+    branch = "uprade_to_bazel_8",
+    remote = "https://github.com/bazel-contrib/rules_bazel_integration_test.git",
+)
+# DEBUG END
