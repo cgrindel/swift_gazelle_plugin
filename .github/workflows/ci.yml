@@ -35,17 +35,33 @@ jobs:
             runner: ubuntu-22.04
           - test: '@@//examples:bzlmod_test_bazel_.bazelversion'
             runner: macos-13
+          - test: '@@//examples:bzlmod_test_bazel_last_green'
+            runner: ubuntu-22.04
+          - test: '@@//examples:bzlmod_test_bazel_last_green'
+            runner: macos-13
           - test: '@@//examples:grpc_example_test_bazel_.bazelversion'
             runner: ubuntu-22.04
           - test: '@@//examples:grpc_example_test_bazel_.bazelversion'
+            runner: macos-13
+          - test: '@@//examples:grpc_example_test_bazel_last_green'
+            runner: ubuntu-22.04
+          - test: '@@//examples:grpc_example_test_bazel_last_green'
             runner: macos-13
           - test: '@@//examples:grpc_package_example_test_bazel_.bazelversion'
             runner: ubuntu-22.04
           - test: '@@//examples:grpc_package_example_test_bazel_.bazelversion'
             runner: macos-13
+          - test: '@@//examples:grpc_package_example_test_bazel_last_green'
+            runner: ubuntu-22.04
+          - test: '@@//examples:grpc_package_example_test_bazel_last_green'
+            runner: macos-13
           - test: '@@//examples:simple_test_bazel_.bazelversion'
             runner: ubuntu-22.04
           - test: '@@//examples:simple_test_bazel_.bazelversion'
+            runner: macos-13
+          - test: '@@//examples:simple_test_bazel_last_green'
+            runner: ubuntu-22.04
+          - test: '@@//examples:simple_test_bazel_last_green'
             runner: macos-13
     runs-on: ${{ matrix.runner }}
     env:
