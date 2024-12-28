@@ -83,7 +83,7 @@ jobs:
           buildbuddy_api_key: ${{ secrets.BUILDBUDDY_API_KEY }}
       - uses: ./.github/actions/execute_integration_test
         with:
-          test_target: ${{ matrix.test_target }}
+          test_target: ${{ matrix.test }}
   tidy_and_test_matrix:
     strategy:
       fail-fast: false
