@@ -20,32 +20,26 @@ assertions_sh="$(rlocation "${assertions_sh_location}")" || \
 # shellcheck disable=SC1090
 source "${assertions_sh}"
 
-swift_gazelle_plugin_tar_gz_location=swift_gazelle_plugin/release/swift_gazelle_plugin.tar.gz
-swift_gazelle_plugin_tar_gz="$(rlocation "${swift_gazelle_plugin_tar_gz_location}")" || \
-  (echo >&2 "Failed to locate ${swift_gazelle_plugin_tar_gz_location}" && exit 1)
+create_scratch_dir_sh_location=rules_bazel_integration_test/tools/create_scratch_dir.sh
+create_scratch_dir_sh="$(rlocation "${create_scratch_dir_sh_location}")" || \
+  (echo >&2 "Failed to locate ${create_scratch_dir_sh_location}" && exit 1)
 
-# MARK - Process Args
+# MARK - Process Arguments
 
 bazel="${BIT_BAZEL_BINARY:-}"
 workspace_dir="${BIT_WORKSPACE_DIR:-}"
 
-# Process args
-while (("$#")); do
-  case "${1}" in
-    *)
-      fail "Unrecognized argument. ${1}"
-      ;;
-  esac
-done
-
 [[ -n "${bazel:-}" ]] || exit_with_msg "Must specify the location of the Bazel binary."
-[[ -n "${workspace_dir:-}" ]] || exit_with_msg "Must specify the path of the workspace directory."
+[[ -n "${workspace_dir:-}" ]] || exit_with_msg "Must specify the location of the workspace directory."
 
-# MARK - Create a WORKSPACE
+# MARK - Create Scratch Directory
 
-# Extract the contents of the archive into the workspace directory
-tar -xf "${swift_gazelle_plugin_tar_gz}" -C "${workspace_dir}"
+scratch_dir="$("${create_scratch_dir_sh}" --workspace "${workspace_dir}")"
+cd "${scratch_dir}"
 
-# Test the extracted contents
-cd "${workspace_dir}"
-"${bazel}" test //examples:bzlmod_test_bazel_.bazelversion
+# Dump Bazel info
+"${bazel}" info
+
+# MARK - Test As Is
+
+do_test

@@ -45,6 +45,7 @@ release_archive(
     name = "archive",
     srcs = [
         "//:runtime_files",
+        "//bzlmod:all_files",
     ],
     out = "swift_gazelle_plugin.tar.gz",
 )

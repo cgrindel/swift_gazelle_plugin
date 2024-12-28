@@ -107,7 +107,6 @@ def _ci_test_params_suite(name, example_infos):
     )
 
 _examples = [
-    "bzlmod",
     "grpc_example",
     "grpc_package_example",
     "simple",
