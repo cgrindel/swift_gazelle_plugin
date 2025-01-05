@@ -5,9 +5,10 @@ module(
 
 # MARK: - Runtime Dependencies
 
+bazel_dep(name = "rules_shell", version = "0.3.0")
 bazel_dep(name = "cgrindel_bazel_starlib", version = "0.21.0")
-bazel_dep(name = "bazel_skylib", version = "1.4.2")
-bazel_dep(name = "rules_go", version = "0.47.0")
+bazel_dep(name = "bazel_skylib", version = "1.7.1")
+bazel_dep(name = "rules_go", version = "0.50.1")
 bazel_dep(name = "gazelle", version = "0.40.0")
 
 go_sdk = use_extension("@rules_go//go:extensions.bzl", "go_sdk")
@@ -18,6 +19,7 @@ go_deps.from_file(go_mod = "//:go.mod")
 use_repo(
     go_deps,
     "com_github_bazelbuild_buildtools",
+    "com_github_creasty_defaults",
     "com_github_deckarep_golang_set_v2",
     "com_github_stretchr_testify",
     "in_gopkg_yaml_v3",
@@ -29,7 +31,7 @@ use_repo(
 
 bazel_dep(
     name = "rules_bazel_integration_test",
-    version = "0.14.1",
+    version = "0.31.0",
     dev_dependency = True,
 )
 bazel_dep(
@@ -49,8 +51,11 @@ bazel_binaries = use_extension(
     dev_dependency = True,
 )
 bazel_binaries.download(version_file = "//:.bazelversion")
+bazel_binaries.download(version = "last_green")
 use_repo(
     bazel_binaries,
     "bazel_binaries",
+    "bazel_binaries_bazelisk",
     "build_bazel_bazel_.bazelversion",
+    "build_bazel_bazel_last_green",
 )
