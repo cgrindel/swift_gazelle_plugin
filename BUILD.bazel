@@ -149,6 +149,8 @@ filegroup(
     # Include every package that is required by the child workspaces.
     srcs = [
         ":all_files",
+        "//ci:all_files",
+        "//ci/internal:all_files",
         "//gazelle:all_files",
         "//gazelle/internal/jsonutils:all_files",
         "//gazelle/internal/pathdistance:all_files",
