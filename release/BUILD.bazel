@@ -1,0 +1,102 @@
+load("@bazel_binaries//:defs.bzl", "bazel_binaries")
+load("@bazel_skylib//rules:build_test.bzl", "build_test")
+load("@cgrindel_bazel_starlib//bzlformat:defs.bzl", "bzlformat_pkg")
+load(
+    "@cgrindel_bazel_starlib//bzlrelease:defs.bzl",
+    "create_release",
+    "generate_module_snippet",
+    "generate_release_notes",
+    "hash_sha256",
+    "release_archive",
+    "update_readme",
+)
+load(
+    "@rules_bazel_integration_test//bazel_integration_test:defs.bzl",
+    "bazel_integration_test",
+    "integration_test_utils",
+)
+load("@rules_shell//shell:sh_binary.bzl", "sh_binary")
+load("//ci:defs.bzl", "ci_integration_test_params")
+
+bzlformat_pkg(name = "bzlformat")
+
+# MARK: - Release
+
+generate_module_snippet(
+    name = "generate_module_snippet",
+    module_name = "swift_gazelle_plugin",
+)
+
+generate_release_notes(
+    name = "generate_release_notes",
+    generate_module_snippet = ":generate_module_snippet",
+)
+
+update_readme(
+    name = "update_readme",
+    generate_module_snippet = ":generate_module_snippet",
+)
+
+create_release(
+    name = "create",
+    workflow_name = "Create Release",
+)
+
+release_archive(
+    name = "archive",
+    srcs = [
+        "//:runtime_files",
+        "//bzlmod:all_files",
+    ],
+    out = "swift_gazelle_plugin.tar.gz",
+)
+
+hash_sha256(
+    name = "archive_sha256",
+    src = ":archive",
+    out = "swift_gazelle_plugin.tar.gz.sha256",
+)
+
+build_test(
+    name = "archive_build_test",
+    targets = [
+        ":archive",
+        ":archive_sha256",
+    ],
+)
+
+sh_binary(
+    name = "archive_test_runner",
+    testonly = True,
+    srcs = ["archive_test_runner.sh"],
+    data = [":archive"],
+    deps = [
+        "@bazel_tools//tools/bash/runfiles",
+        "@cgrindel_bazel_starlib//shlib/lib:assertions",
+    ],
+)
+
+bazel_integration_test(
+    name = "archive_test",
+    bazel_binaries = bazel_binaries,
+    bazel_version = bazel_binaries.versions.current,
+    tags = integration_test_utils.DEFAULT_INTEGRATION_TEST_TAGS + [
+        # Avoid file permssion error when using disk and repository cache after
+        # 7.0.0rc2 upgrade.
+        # https://github.com/bazelbuild/bazel/issues/19908
+        "no-sandbox",
+    ],
+    test_runner = ":archive_test_runner",
+    visibility = ["//:__subpackages__"],
+)
+
+ci_integration_test_params(
+    name = "archive_test_params",
+    bzlmod_modes = ["enabled"],
+    oss = [
+        "macos",
+        "linux",
+    ],
+    test_names = ["archive_test"],
+    visibility = ["//:__subpackages__"],
+)
