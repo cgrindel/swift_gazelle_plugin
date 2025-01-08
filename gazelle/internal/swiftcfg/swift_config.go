@@ -73,11 +73,11 @@ type SwiftConfig struct {
 	// The keys should match the GRPC flavors above, or "proto" for the base proto compiler.
 	// Defaults to:
 	// {
-	// 	"swift_proto":       "@build_bazel_rules_swift//proto/compilers:swift_proto",
-	// 	"swift_client_proto": "@build_bazel_rules_swift//proto/compilers:swift_client_proto",
-	// 	"swift_server_proto": "@build_bazel_rules_swift//proto/compilers:swift_server_proto",
+	// 	"swift_proto":        {"@build_bazel_rules_swift//proto/compilers:swift_proto"},
+	// 	"swift_client_proto": {"@build_bazel_rules_swift//proto/compilers:swift_client_proto"},
+	// 	"swift_server_proto": {"@build_bazel_rules_swift//proto/compilers:swift_server_proto"},
 	// }
-	SwiftProtoCompilers map[string]string
+	SwiftProtoCompilers map[string][]string
 
 	// Mapping of relative path to default module name. These values are populated from directives
 	// that can be applied to
@@ -111,10 +111,10 @@ func NewSwiftConfig() *SwiftConfig {
 			"swift_client_proto",
 			"swift_server_proto",
 		},
-		SwiftProtoCompilers: map[string]string{
-			"swift_proto":        "@build_bazel_rules_swift//proto/compilers:swift_proto",
-			"swift_client_proto": "@build_bazel_rules_swift//proto/compilers:swift_client_proto",
-			"swift_server_proto": "@build_bazel_rules_swift//proto/compilers:swift_server_proto",
+		SwiftProtoCompilers: map[string][]string{
+			"swift_proto":        {"@build_bazel_rules_swift//proto/compilers:swift_proto"},
+			"swift_client_proto": {"@build_bazel_rules_swift//proto/compilers:swift_client_proto"},
+			"swift_server_proto": {"@build_bazel_rules_swift//proto/compilers:swift_server_proto"},
 		},
 	}
 }

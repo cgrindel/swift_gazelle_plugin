@@ -19,7 +19,7 @@ func RulesFromProtos(
 	swiftProtoGenerationMode string,
 	generateSwiftProtoLibraries bool,
 	generateSwiftProtoLibraryGRPCFlavors []string,
-	swiftProtoCompilers map[string]string,
+	swiftProtoCompilers map[string][]string,
 	generatePascalCaseModuleNames bool,
 	omitProtoSuffixFromModuleNames bool,
 ) []*rule.Rule {
@@ -169,7 +169,7 @@ func generateRuleFromProtoPackage(
 	protoPackage proto.Package,
 	generateSwiftProtoLibraries bool,
 	generateSwiftProtoLibraryGRPCFlavors []string,
-	swiftProtoCompilers map[string]string,
+	swiftProtoCompilers map[string][]string,
 	generatePascalCaseModuleNames bool,
 	omitProtoSuffixFromModuleNames bool,
 ) []*rule.Rule {
@@ -233,10 +233,9 @@ func generateRuleFromProtoPackage(
 			swiftProtoLibrary := rule.NewRule("swift_proto_library", swiftProtoLibraryTargetName)
 			swiftProtoLibrary.SetAttr(ModuleNameAttrName, swiftProtoLibraryModuleName)
 			swiftProtoLibrary.SetAttr("protos", protoLibraryTargetLabels)
-			swiftProtoLibrary.SetAttr("compilers", []string{
-				swiftProtoCompilers["swift_proto"],
-				swiftProtoCompilers[protoFlavor],
-			})
+			mergedCompilers := swiftProtoCompilers["swift_proto"]
+			mergedCompilers = append(mergedCompilers, swiftProtoCompilers[protoFlavor]...)
+			swiftProtoLibrary.SetAttr("compilers", mergedCompilers)
 			swiftProtoLibrary.SetPrivateAttr(config.GazelleImportsKey, gazelleImports)
 			swiftProtoLibrary.SetPrivateAttr(SwiftProtoPackageKey, swiftProtoPackage)
 			setVisibilityAttr(swiftProtoLibrary, shouldSetVisibility, []string{"//visibility:public"})
@@ -256,7 +255,7 @@ func generateRuleFromProtoPackage(
 		swiftProtoLibrary := rule.NewRule("swift_proto_library", swiftProtoLibraryTargetName)
 		swiftProtoLibrary.SetAttr(ModuleNameAttrName, swiftProtoLibraryModuleName)
 		swiftProtoLibrary.SetAttr("protos", protoLibraryTargetLabels)
-		swiftProtoLibrary.SetAttr("compilers", []string{swiftProtoCompilers["swift_proto"]})
+		swiftProtoLibrary.SetAttr("compilers", swiftProtoCompilers["swift_proto"])
 		swiftProtoLibrary.SetPrivateAttr(config.GazelleImportsKey, gazelleImports)
 		swiftProtoLibrary.SetPrivateAttr(SwiftProtoPackageKey, swiftProtoPackage)
 		setVisibilityAttr(swiftProtoLibrary, shouldSetVisibility, []string{"//visibility:public"})
