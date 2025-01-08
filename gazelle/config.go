@@ -112,9 +112,9 @@ func (*swiftLang) Configure(c *config.Config, rel string, f *rule.File) {
 		return
 	}
 
-	// Clone the config and set the new value to the clone
-	sc := &swiftcfg.SwiftConfig{}
-	*sc = *swiftcfg.GetSwiftConfig(c)
+	// Deep copy the config and set the new value:
+	psc := swiftcfg.GetSwiftConfig(c)
+	sc := swiftcfg.DeepCopySwiftConfig(psc)
 	swiftcfg.SetSwiftConfig(c, sc)
 
 	for _, d := range f.Directives {

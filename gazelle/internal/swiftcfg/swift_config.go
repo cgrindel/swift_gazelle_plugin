@@ -119,6 +119,37 @@ func NewSwiftConfig() *SwiftConfig {
 	}
 }
 
+// We need to deep-copy some fields in the swift config as gazelle walks the directory tree
+// in order to ensure directives only apply to the current and descendent directories,
+// and not sibling directories.
+func DeepCopySwiftConfig(sc *SwiftConfig) *SwiftConfig {
+	csc := &SwiftConfig{}
+	*csc = *sc
+	csc.DefaultModuleNames = copyMap(sc.DefaultModuleNames)
+	csc.SwiftLibraryTags = copySlice(sc.SwiftLibraryTags)
+	csc.GenerateSwiftProtoLibraryGRPCFlavors = copySlice(sc.GenerateSwiftProtoLibraryGRPCFlavors)
+	csc.SwiftProtoCompilers = copyMap(sc.SwiftProtoCompilers)
+	return csc
+}
+
+func copySlice[T any](original []T) []T {
+	copy := make([]T, len(original))
+	for i, v := range original {
+		copy[i] = v
+	}
+
+	return copy
+}
+
+func copyMap[T any](original map[string]T) map[string]T {
+	copy := make(map[string]T, len(original))
+	for k, v := range original {
+		copy[k] = v
+	}
+
+	return copy
+}
+
 func (sc *SwiftConfig) ConfigModulePaths() []string {
 	dmnLen := len(sc.DefaultModuleNames)
 	if dmnLen == 0 {
