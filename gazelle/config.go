@@ -180,9 +180,17 @@ func (*swiftLang) Configure(c *config.Config, rel string, f *rule.File) {
 
 			// Otherwise, parse the compilers:
 			subcomponents := strings.Split(d.Value, "=")
-			flavor := subcomponents[0]
-			compilers := strings.Split(subcomponents[1], ",")
-			sc.SwiftProtoCompilers[flavor] = compilers
+			var swiftProtoCompilers []string
+			var flavor string
+			if len(subcomponents) == 2 {
+				flavor = subcomponents[0]
+				swiftProtoCompilers = strings.Split(subcomponents[1], ",")
+			} else {
+				flavor = "swift_proto"
+				swiftProtoCompilers = strings.Split(subcomponents[0], ",")
+			}
+
+			sc.SwiftProtoCompilers[flavor] = swiftProtoCompilers
 		case defaultModuleNameDirective:
 			sc.DefaultModuleNames[rel] = d.Value
 		}
