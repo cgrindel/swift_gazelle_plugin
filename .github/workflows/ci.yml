@@ -35,6 +35,14 @@ jobs:
             runner: ubuntu-22.04
           - test: '@@//bzlmod:e2e_test'
             runner: macos-14
+          - test: '@@//examples:custom_swift_proto_compiler_test_bazel_.bazelversion'
+            runner: ubuntu-22.04
+          - test: '@@//examples:custom_swift_proto_compiler_test_bazel_.bazelversion'
+            runner: macos-14
+          - test: '@@//examples:custom_swift_proto_compiler_test_bazel_last_green'
+            runner: ubuntu-22.04
+          - test: '@@//examples:custom_swift_proto_compiler_test_bazel_last_green'
+            runner: macos-14
           - test: '@@//examples:grpc_example_test_bazel_.bazelversion'
             runner: ubuntu-22.04
           - test: '@@//examples:grpc_example_test_bazel_.bazelversion'

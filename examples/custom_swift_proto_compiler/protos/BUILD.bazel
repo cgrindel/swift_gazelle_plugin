@@ -1,0 +1,19 @@
+load("@rules_proto//proto:defs.bzl", "proto_library")
+load("@rules_swift//proto:proto.bzl", "swift_proto_library")
+
+proto_library(
+    name = "example_proto",
+    srcs = ["example.proto"],
+    visibility = ["//visibility:public"],
+)
+
+swift_proto_library(
+    name = "example_swift_proto",
+    compilers = [
+        "@rules_swift//proto/compilers:swift_proto",
+        "//compiler",
+    ],
+    module_name = "Example",
+    protos = [":example_proto"],
+    visibility = ["//visibility:public"],
+)
