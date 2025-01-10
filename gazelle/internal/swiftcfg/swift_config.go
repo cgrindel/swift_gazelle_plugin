@@ -1,7 +1,9 @@
 package swiftcfg
 
 import (
+	"maps"
 	"os"
+	"slices"
 	"sort"
 
 	"github.com/bazelbuild/bazel-gazelle/config"
@@ -125,29 +127,11 @@ func NewSwiftConfig() *SwiftConfig {
 func DeepCopySwiftConfig(sc *SwiftConfig) *SwiftConfig {
 	csc := &SwiftConfig{}
 	*csc = *sc
-	csc.DefaultModuleNames = copyMap(sc.DefaultModuleNames)
-	csc.SwiftLibraryTags = copySlice(sc.SwiftLibraryTags)
-	csc.GenerateSwiftProtoLibraryGRPCFlavors = copySlice(sc.GenerateSwiftProtoLibraryGRPCFlavors)
-	csc.SwiftProtoCompilers = copyMap(sc.SwiftProtoCompilers)
+	csc.DefaultModuleNames = maps.Clone(sc.DefaultModuleNames)
+	csc.SwiftLibraryTags = slices.Clone(sc.SwiftLibraryTags)
+	csc.GenerateSwiftProtoLibraryGRPCFlavors = slices.Clone(sc.GenerateSwiftProtoLibraryGRPCFlavors)
+	csc.SwiftProtoCompilers = maps.Clone(sc.SwiftProtoCompilers)
 	return csc
-}
-
-func copySlice[T any](original []T) []T {
-	copy := make([]T, len(original))
-	for i, v := range original {
-		copy[i] = v
-	}
-
-	return copy
-}
-
-func copyMap[T any](original map[string]T) map[string]T {
-	copy := make(map[string]T, len(original))
-	for k, v := range original {
-		copy[k] = v
-	}
-
-	return copy
 }
 
 func (sc *SwiftConfig) ConfigModulePaths() []string {
