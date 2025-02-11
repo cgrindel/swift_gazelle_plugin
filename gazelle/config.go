@@ -91,7 +91,7 @@ const defaultModuleNameDirective = "swift_default_module_name"
 const swiftLibraryTagsDirective = "swift_library_tags"
 const swiftGenerateProtoLibrariesDirective = "swift_generate_proto_libraries"
 const swiftGenerateGRPCLibrariesWithFlavorsDirective = "swift_generate_grpc_libraries_with_flavors"
-const swiftProtoCompilerDirective = "swift_proto_compiler"
+const swiftProtoCompilersDirective = "swift_proto_compilers"
 
 func (*swiftLang) KnownDirectives() []string {
 	return []string{
@@ -103,7 +103,7 @@ func (*swiftLang) KnownDirectives() []string {
 		swiftLibraryTagsDirective,
 		swiftGenerateProtoLibrariesDirective,
 		swiftGenerateGRPCLibrariesWithFlavorsDirective,
-		swiftProtoCompilerDirective,
+		swiftProtoCompilersDirective,
 	}
 }
 
@@ -112,9 +112,9 @@ func (*swiftLang) Configure(c *config.Config, rel string, f *rule.File) {
 		return
 	}
 
-	// Clone the config and set the new value to the clone
-	sc := &swiftcfg.SwiftConfig{}
-	*sc = *swiftcfg.GetSwiftConfig(c)
+	// Deep copy the config and set the new value:
+	psc := swiftcfg.GetSwiftConfig(c)
+	sc := swiftcfg.DeepCopySwiftConfig(psc)
 	swiftcfg.SetSwiftConfig(c, sc)
 
 	for _, d := range f.Directives {
@@ -172,7 +172,7 @@ func (*swiftLang) Configure(c *config.Config, rel string, f *rule.File) {
 				flavors = strings.Split(d.Value, ",")
 			}
 			sc.GenerateSwiftProtoLibraryGRPCFlavors = flavors
-		case swiftProtoCompilerDirective:
+		case swiftProtoCompilersDirective:
 			if d.Value == "" {
 				// If unset, leave the default intact.
 				break
@@ -180,9 +180,17 @@ func (*swiftLang) Configure(c *config.Config, rel string, f *rule.File) {
 
 			// Otherwise, parse the compilers:
 			subcomponents := strings.Split(d.Value, "=")
-			flavor := subcomponents[0]
-			compiler := subcomponents[1]
-			sc.SwiftProtoCompilers[flavor] = compiler
+			var swiftProtoCompilers []string
+			var flavor string
+			if len(subcomponents) == 2 {
+				flavor = subcomponents[0]
+				swiftProtoCompilers = strings.Split(subcomponents[1], ",")
+			} else {
+				flavor = "swift_proto"
+				swiftProtoCompilers = strings.Split(subcomponents[0], ",")
+			}
+
+			sc.SwiftProtoCompilers[flavor] = swiftProtoCompilers
 		case defaultModuleNameDirective:
 			sc.DefaultModuleNames[rel] = d.Value
 		}

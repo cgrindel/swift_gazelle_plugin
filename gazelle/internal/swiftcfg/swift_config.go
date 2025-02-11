@@ -1,7 +1,9 @@
 package swiftcfg
 
 import (
+	"maps"
 	"os"
+	"slices"
 	"sort"
 
 	"github.com/bazelbuild/bazel-gazelle/config"
@@ -73,11 +75,11 @@ type SwiftConfig struct {
 	// The keys should match the GRPC flavors above, or "proto" for the base proto compiler.
 	// Defaults to:
 	// {
-	// 	"swift_proto":       "@build_bazel_rules_swift//proto/compilers:swift_proto",
-	// 	"swift_client_proto": "@build_bazel_rules_swift//proto/compilers:swift_client_proto",
-	// 	"swift_server_proto": "@build_bazel_rules_swift//proto/compilers:swift_server_proto",
+	// 	"swift_proto":        {"@build_bazel_rules_swift//proto/compilers:swift_proto"},
+	// 	"swift_client_proto": {"@build_bazel_rules_swift//proto/compilers:swift_client_proto"},
+	// 	"swift_server_proto": {"@build_bazel_rules_swift//proto/compilers:swift_server_proto"},
 	// }
-	SwiftProtoCompilers map[string]string
+	SwiftProtoCompilers map[string][]string
 
 	// Mapping of relative path to default module name. These values are populated from directives
 	// that can be applied to
@@ -111,12 +113,25 @@ func NewSwiftConfig() *SwiftConfig {
 			"swift_client_proto",
 			"swift_server_proto",
 		},
-		SwiftProtoCompilers: map[string]string{
-			"swift_proto":        "@build_bazel_rules_swift//proto/compilers:swift_proto",
-			"swift_client_proto": "@build_bazel_rules_swift//proto/compilers:swift_client_proto",
-			"swift_server_proto": "@build_bazel_rules_swift//proto/compilers:swift_server_proto",
+		SwiftProtoCompilers: map[string][]string{
+			"swift_proto":        {"@build_bazel_rules_swift//proto/compilers:swift_proto"},
+			"swift_client_proto": {"@build_bazel_rules_swift//proto/compilers:swift_client_proto"},
+			"swift_server_proto": {"@build_bazel_rules_swift//proto/compilers:swift_server_proto"},
 		},
 	}
+}
+
+// We need to deep-copy some fields in the swift config as gazelle walks the directory tree
+// in order to ensure directives only apply to the current and descendent directories,
+// and not sibling directories.
+func DeepCopySwiftConfig(sc *SwiftConfig) *SwiftConfig {
+	csc := &SwiftConfig{}
+	*csc = *sc
+	csc.DefaultModuleNames = maps.Clone(sc.DefaultModuleNames)
+	csc.SwiftLibraryTags = slices.Clone(sc.SwiftLibraryTags)
+	csc.GenerateSwiftProtoLibraryGRPCFlavors = slices.Clone(sc.GenerateSwiftProtoLibraryGRPCFlavors)
+	csc.SwiftProtoCompilers = maps.Clone(sc.SwiftProtoCompilers)
+	return csc
 }
 
 func (sc *SwiftConfig) ConfigModulePaths() []string {

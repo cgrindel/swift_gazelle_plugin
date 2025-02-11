@@ -1,0 +1,9 @@
+load(
+    "//rules:custom_swift_proto_compiler.bzl",
+    "custom_swift_proto_compiler",
+)
+
+custom_swift_proto_compiler(
+    name = "compiler",
+    visibility = ["//visibility:public"],
+)

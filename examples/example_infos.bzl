@@ -107,6 +107,7 @@ def _ci_test_params_suite(name, example_infos):
     )
 
 _examples = [
+    "custom_swift_proto_compiler",
     "grpc_example",
     "grpc_package_example",
     "simple",
