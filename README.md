@@ -39,11 +39,9 @@ common --enable_bzlmod
 Add a dependency on `swift_gazelle_plugin`.
 
 <!-- BEGIN MODULE SNIPPET -->
-
 ```python
-bazel_dep(name = "swift_gazelle_plugin", version = "0.0.0")
+bazel_dep(name = "swift_gazelle_plugin", version = "0.1.0")
 ```
-
 <!-- END MODULE SNIPPET -->
 
 ### 3. Add Gazelle targets to `BUILD.bazel` at the root of your workspace.
