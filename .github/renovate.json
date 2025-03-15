@@ -1,0 +1,21 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "github>cgrindel/renovate_presets:ruleset_base",
+    "github>cgrindel/renovate_presets:cgrindel_default"
+  ],
+  "postUpgradeTasks": {
+    "commands": [
+      "./do_renovate_post_upgrade"
+    ],
+    "executionMode": "branch"
+  },
+  "packageRules": [
+    {
+      "matchPackagePatterns": ["buildtools"],
+      "matchManagers": ["gomod"],
+      "enabled": false
+    }
+  ]
+}
+
