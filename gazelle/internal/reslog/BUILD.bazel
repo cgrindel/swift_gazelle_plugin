@@ -12,10 +12,10 @@ go_library(
     visibility = ["//gazelle:go_packages"],
     deps = [
         "//gazelle/internal/swift",
-        "@com_github_bazelbuild_bazel_gazelle//label",
-        "@com_github_bazelbuild_bazel_gazelle//resolve",
-        "@com_github_bazelbuild_bazel_gazelle//rule",
         "@com_github_deckarep_golang_set_v2//:golang-set",
+        "@gazelle//label",
+        "@gazelle//resolve",
+        "@gazelle//rule",
         "@in_gopkg_yaml_v3//:yaml_v3",
         "@org_golang_x_exp//slices",
     ],
@@ -31,10 +31,10 @@ go_test(
         ":reslog",
         "//gazelle/internal/swift",
         "//gazelle/internal/swiftpkg",
-        "@com_github_bazelbuild_bazel_gazelle//label",
-        "@com_github_bazelbuild_bazel_gazelle//resolve",
-        "@com_github_bazelbuild_bazel_gazelle//rule",
         "@com_github_stretchr_testify//assert",
+        "@gazelle//label",
+        "@gazelle//resolve",
+        "@gazelle//rule",
     ],
 )
 
