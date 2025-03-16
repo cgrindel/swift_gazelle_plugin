@@ -5,6 +5,6 @@ import PackageDescription
 let package = Package(
     name: "grpc_example",
     dependencies: [
-        .package(url: "https://github.com/apple/swift-protobuf.git", exact: "1.20.2")
+        .package(url: "https://github.com/apple/swift-protobuf.git", exact: "1.29.0")
     ]
 )
