@@ -49,7 +49,9 @@ var kinds = map[string]rule.KindInfo{
 		NonEmptyAttrs: map[string]bool{
 			"deps": true,
 		},
-		MergeableAttrs: map[string]bool{},
+		MergeableAttrs: map[string]bool{
+			"compilers": true,
+		},
 		// This ensures that the deps attribute is updated properly if a dependency disappears.
 		ResolveAttrs: map[string]bool{"deps": true},
 	},
