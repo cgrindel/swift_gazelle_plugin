@@ -49,7 +49,10 @@ var kinds = map[string]rule.KindInfo{
 		NonEmptyAttrs: map[string]bool{
 			"deps": true,
 		},
-		MergeableAttrs: map[string]bool{},
+		// This ensures that any changes to the swift_proto_compilers directives update existing rules.
+		MergeableAttrs: map[string]bool{
+			"compilers": true,
+		},
 		// This ensures that the deps attribute is updated properly if a dependency disappears.
 		ResolveAttrs: map[string]bool{"deps": true},
 	},
