@@ -10,8 +10,8 @@ go_library(
     importpath = "github.com/cgrindel/swift_gazelle_plugin/tools/update_go_repos",
     visibility = ["//visibility:private"],
     deps = [
-        "@com_github_bazelbuild_bazel_gazelle//rule",
         "@com_github_bazelbuild_buildtools//build",
+        "@gazelle//rule",
         "@org_golang_x_exp//slices",
     ],
 )
