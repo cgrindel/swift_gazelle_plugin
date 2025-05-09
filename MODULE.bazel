@@ -51,18 +51,11 @@ bazel_binaries = use_extension(
     dev_dependency = True,
 )
 bazel_binaries.download(version_file = "//:.bazelversion")
-
-# GH0078: Disable last_green until
-# https://github.com/bazelbuild/continuous-integration/issues/2294 is addressed.
-# bazel_binaries.download(version = "last_green")
+bazel_binaries.download(version = "last_green")
 use_repo(
     bazel_binaries,
     "bazel_binaries",
     "bazel_binaries_bazelisk",
     "build_bazel_bazel_.bazelversion",
-
-    # GH0078: Disable last_green until
-    # https://github.com/bazelbuild/continuous-integration/issues/2294 is
-    # addressed.
-    # "build_bazel_bazel_last_green",
+    "build_bazel_bazel_last_green",
 )
