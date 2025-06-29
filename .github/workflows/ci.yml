@@ -39,17 +39,33 @@ jobs:
             runner: ubuntu-22.04
           - test: '@@//examples:custom_swift_proto_compiler_test_bazel_.bazelversion'
             runner: macos-15
+          - test: '@@//examples:custom_swift_proto_compiler_test_bazel_last_green'
+            runner: ubuntu-22.04
+          - test: '@@//examples:custom_swift_proto_compiler_test_bazel_last_green'
+            runner: macos-15
           - test: '@@//examples:grpc_example_test_bazel_.bazelversion'
             runner: ubuntu-22.04
           - test: '@@//examples:grpc_example_test_bazel_.bazelversion'
+            runner: macos-15
+          - test: '@@//examples:grpc_example_test_bazel_last_green'
+            runner: ubuntu-22.04
+          - test: '@@//examples:grpc_example_test_bazel_last_green'
             runner: macos-15
           - test: '@@//examples:grpc_package_example_test_bazel_.bazelversion'
             runner: ubuntu-22.04
           - test: '@@//examples:grpc_package_example_test_bazel_.bazelversion'
             runner: macos-15
+          - test: '@@//examples:grpc_package_example_test_bazel_last_green'
+            runner: ubuntu-22.04
+          - test: '@@//examples:grpc_package_example_test_bazel_last_green'
+            runner: macos-15
           - test: '@@//examples:simple_test_bazel_.bazelversion'
             runner: ubuntu-22.04
           - test: '@@//examples:simple_test_bazel_.bazelversion'
+            runner: macos-15
+          - test: '@@//examples:simple_test_bazel_last_green'
+            runner: ubuntu-22.04
+          - test: '@@//examples:simple_test_bazel_last_green'
             runner: macos-15
           - test: '@@//release:archive_test'
             runner: ubuntu-22.04
