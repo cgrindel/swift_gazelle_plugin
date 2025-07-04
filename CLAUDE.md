@@ -110,7 +110,8 @@ be customized for different Swift project structures.
 #### Markdown (Documentation)
 
 - Use 2-space indentation for nested lists
-- **MUST wrap lines at 100 characters maximum**
+- **MUST wrap lines at 100 characters maximum** (for readability in split-screen editors and
+  consistent formatting across different display sizes)
 - Use `prettier` for formatting when possible
 - Include descriptive comments for complex sections
 
