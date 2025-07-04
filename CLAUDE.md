@@ -83,6 +83,89 @@ The plugin analyzes Swift source files and generates appropriate Bazel rules:
 The plugin supports various configuration options through Gazelle directives in BUILD files and can
 be customized for different Swift project structures.
 
+## Code Style and Formatting
+
+### Language-Specific Style Requirements
+
+#### Go (Primary Language)
+
+- Use 4-space indentation (not tabs)
+- Wrap lines longer than 100 characters
+- Use `gofmt` or `goimports` for formatting
+- Follow standard Go conventions for naming and documentation
+- Include comprehensive package documentation
+- Use explicit error handling over silent failures
+
+#### Starlark/Bazel (BUILD files and .bzl files)
+
+- Use 4-space indentation
+- Wrap lines longer than 80 characters
+- Use `buildifier -mode=fix -lint=fix` for formatting
+- Follow Bazel style guidelines
+
+#### Markdown (Documentation)
+
+- Use 2-space indentation for nested lists
+- **MUST wrap lines at 100 characters maximum**
+- Use `prettier` for formatting when possible
+- Include descriptive comments for complex sections
+
+#### Shell Scripts (Test and utility scripts)
+
+- Always include shebang: `#!/usr/bin/env bash`
+- Use `set -o errexit -o nounset -o pipefail` for error handling
+- Use 2-space indentation
+- Wrap lines longer than 80 characters
+- Use `shfmt -i 2 -ci -bn` for formatting
+
+#### Swift (Example projects and test cases)
+
+- Use 2-space indentation
+- Wrap lines longer than 100 characters
+- Follow Swift naming conventions
+
+#### YAML (CI/CD configuration)
+
+- Use 2-space indentation
+- Use `yamlfmt` for formatting when possible
+- Follow YAML best practices for readability
+
+### Style Enforcement Rules
+
+#### Mandatory Pre-submission Checks
+
+Before completing ANY code task, verify:
+
+1. **Correct indentation** for the specific language
+2. **Line length compliance** with the limits above
+3. **Proper formatting tool** usage where specified
+4. **Language-specific conventions** are followed
+
+#### Critical Requirements
+
+- **Go files**: Must pass `gofmt` validation
+- **BUILD files**: Must be `buildifier` compatible
+- **Markdown files**: MUST wrap at 100 characters (strictly enforced)
+- **Shell scripts**: Must include shebang and error handling
+- **All files**: No trailing whitespace
+
+### Development Workflow Integration
+
+#### Pre-submission Commands
+
+1. `bazel run //:tidy` - Run all maintenance tasks (formatting, updates, etc.)
+2. `bazel test //...` - Ensure all tests pass
+3. Verify language-specific formatting compliance
+
+#### Style Validation
+
+When making changes:
+
+- Check existing file style consistency
+- Apply appropriate formatting tools
+- Verify line length and indentation
+- Confirm language-specific requirements
+
 ## Commit Message Guidelines
 
 - Use conventional commit message format for this repository
