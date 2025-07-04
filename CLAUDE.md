@@ -17,6 +17,10 @@ Bazel's Gazelle tool to analyze Swift source code and create appropriate build t
 - `bazel run //:tidy` - Run all maintenance tasks (formatting, updates, etc.)
 - `bazel run //:update_files` - Quick update of source files and build files
 
+### Allowed Tools
+
+<!-- allowed_tools: Bash(bazel test //...), Bash(bazel run //:tidy), Bash(bazel run //:update_files) -->
+
 ### Testing
 
 - `bazel test //examples:smoke_integration_tests` - Run smoke tests on examples
