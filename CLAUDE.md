@@ -19,7 +19,7 @@ Bazel's Gazelle tool to analyze Swift source code and create appropriate build t
 
 ### Allowed Tools
 
-<!-- allowed_tools: Bash(bazel test //...), Bash(bazel run //:tidy), Bash(bazel run //:update_files) -->
+<!-- allowed_tools: Bash(bazel test //...), Bash(bazel run //:tidy), Bash(bazel run //:update_files), Bash(bazel build //...) -->
 
 ### Testing
 

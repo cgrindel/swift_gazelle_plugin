@@ -12,7 +12,7 @@ on:
 
 jobs:
   claude-review:
-    if: github.event.pull_request.draft == false && github.event.pull_request.user.login != 'app/cgrindel-self-hosted-renovate'
+    if: github.event.pull_request.draft == false && !github.event.pull_request.user.bot
     # Optional: Filter by PR author
     # if: |
     #   github.event.pull_request.user.login == 'external-contributor' ||
