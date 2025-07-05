@@ -69,6 +69,7 @@ go_test(
         "dependency_index_test.go",
         "files_test.go",
         "http_archive_test.go",
+        "imports_test.go",
         "is_builtin_module_test.go",
         "label_str_test.go",
         "module_dir_test.go",
@@ -84,6 +85,8 @@ go_test(
         "product_test.go",
         "repo_rule_from_bazel_repo_test.go",
         "rule_kinds_test.go",
+        "rules_common_test.go",
+        "rules_from_srcs_test.go",
     ],
     deps = [
         ":swift",
@@ -91,7 +94,9 @@ go_test(
         "//gazelle/internal/swiftpkg",
         "@com_github_deckarep_golang_set_v2//:golang-set",
         "@com_github_stretchr_testify//assert",
+        "@gazelle//config",
         "@gazelle//label",
+        "@gazelle//language",
         "@gazelle//rule",
     ],
 )

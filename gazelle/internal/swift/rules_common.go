@@ -8,7 +8,9 @@ import (
 
 // Rule Creation
 
-func rulesForLibraryModule(
+// RulesForLibraryModule creates Bazel rules for Swift library modules.
+// This function is exported for testing purposes only.
+func RulesForLibraryModule(
 	defaultName string,
 	defaultModuleName string,
 	srcs []string,
@@ -28,7 +30,9 @@ func rulesForLibraryModule(
 	return []*rule.Rule{r}
 }
 
-func rulesForBinaryModule(
+// RulesForBinaryModule creates Bazel rules for Swift binary modules.
+// This function is exported for testing purposes only.
+func RulesForBinaryModule(
 	defaultName string,
 	defaultModuleName string,
 	srcs []string,
@@ -43,7 +47,9 @@ func rulesForBinaryModule(
 	return []*rule.Rule{r}
 }
 
-func rulesForTestModule(
+// RulesForTestModule creates Bazel rules for Swift test modules.
+// This function is exported for testing purposes only.
+func RulesForTestModule(
 	defaultName string,
 	defaultModuleName string,
 	srcs []string,
