@@ -18,26 +18,27 @@ func RulesFromSrcs(
 	swiftLibraryTags []string,
 ) []*rule.Rule {
 	fileInfos := swiftpkg.NewSwiftFileInfosFromRelPaths(args.Dir, srcs)
-	swiftImports, moduleType := collectSwiftInfo(fileInfos)
+	swiftImports, moduleType := CollectSwiftInfo(fileInfos)
 
 	shouldSetVis := shouldSetVisibility(args)
 
 	var rules []*rule.Rule
 	switch moduleType {
 	case LibraryModuleType:
-		rules = rulesForLibraryModule(defaultName, defaultModuleName, srcs, swiftImports, shouldSetVis, swiftLibraryTags, args.File)
+		rules = RulesForLibraryModule(defaultName, defaultModuleName, srcs, swiftImports, shouldSetVis, swiftLibraryTags, args.File)
 	case BinaryModuleType:
-		rules = rulesForBinaryModule(defaultName, defaultModuleName, srcs, swiftImports, shouldSetVis, args.File)
+		rules = RulesForBinaryModule(defaultName, defaultModuleName, srcs, swiftImports, shouldSetVis, args.File)
 	case TestModuleType:
-		rules = rulesForTestModule(defaultName, defaultModuleName, srcs, swiftImports, shouldSetVis, args.File)
+		rules = RulesForTestModule(defaultName, defaultModuleName, srcs, swiftImports, shouldSetVis, args.File)
 	}
 	return rules
 }
 
 var guiModules = mapset.NewSet("AppKit", "UIKit", "SwiftUI")
 
-// Returns the imports and the module typ
-func collectSwiftInfo(fileInfos []*swiftpkg.SwiftFileInfo) ([]string, ModuleType) {
+// CollectSwiftInfo returns the imports and the module type from the provided file infos.
+// This function is exported for testing purposes only.
+func CollectSwiftInfo(fileInfos []*swiftpkg.SwiftFileInfo) ([]string, ModuleType) {
 	importsGUIModules := false
 	hasTestFiles := false
 	hasMain := false
