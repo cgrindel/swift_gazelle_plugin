@@ -9,7 +9,7 @@ bazel_dep(name = "rules_shell", version = "0.3.0")
 bazel_dep(name = "cgrindel_bazel_starlib", version = "0.27.0")
 bazel_dep(name = "bazel_skylib", version = "1.7.1")
 bazel_dep(name = "rules_go", version = "0.50.1")
-bazel_dep(name = "gazelle", version = "0.43.0")
+bazel_dep(name = "gazelle", version = "0.44.0")
 
 go_sdk = use_extension("@rules_go//go:extensions.bzl", "go_sdk")
 go_sdk.download(version = "1.23.3")
@@ -51,15 +51,11 @@ bazel_binaries = use_extension(
     dev_dependency = True,
 )
 bazel_binaries.download(version_file = "//:.bazelversion")
-
-# GH0086: Enable once Bazel HEAD is happy again.
-# bazel_binaries.download(version = "last_green")
+bazel_binaries.download(version = "last_green")
 use_repo(
     bazel_binaries,
     "bazel_binaries",
     "bazel_binaries_bazelisk",
     "build_bazel_bazel_.bazelversion",
-
-    # GH0086: Enable once Bazel HEAD is happy again.
-    # "build_bazel_bazel_last_green",
+    "build_bazel_bazel_last_green",
 )
