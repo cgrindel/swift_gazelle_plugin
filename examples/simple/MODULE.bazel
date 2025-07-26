@@ -9,6 +9,11 @@ local_path_override(
 
 bazel_dep(name = "cgrindel_bazel_starlib", version = "0.27.0")
 
+# The aspect_bazel_lib dependency is not directly used by this workspace.
+# However, it is used transitively. We need a recent version to support the
+# Bazel last_green tests.
+bazel_dep(name = "aspect_bazel_lib", version = "2.20.0")
+
 # The apple_support bazel_dep must come before the rules_cc.
 # https://github.com/bazelbuild/apple_support#incompatible-toolchain-resolution
 bazel_dep(name = "apple_support", version = "1.22.1")
