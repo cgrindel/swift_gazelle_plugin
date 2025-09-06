@@ -1,6 +1,8 @@
 module github.com/cgrindel/swift_gazelle_plugin
 
-go 1.23.3
+go 1.24.0
+
+toolchain go1.25.1
 
 // Workaround for inconsistent Go versions being used in rules_bazel_integration_test tests.
 // toolchain go1.21.5
@@ -10,8 +12,8 @@ require (
 	github.com/bazelbuild/buildtools v0.0.0-20240918101019-be1c24cc9a44
 	github.com/creasty/defaults v1.8.0
 	github.com/deckarep/golang-set/v2 v2.8.0
-	github.com/stretchr/testify v1.10.0
-	golang.org/x/exp v0.0.0-20250811191247-51f88131bc50
+	github.com/stretchr/testify v1.11.1
+	golang.org/x/exp v0.0.0-20250819193227-8b4c13bb791b
 	golang.org/x/text v0.28.0
 	gopkg.in/yaml.v3 v3.0.1
 )
