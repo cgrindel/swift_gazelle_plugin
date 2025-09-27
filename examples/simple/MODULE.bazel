@@ -28,7 +28,7 @@ use_repo(apple_cc_configure, "local_config_apple_cc")
 
 bazel_dep(
     name = "bazel_skylib_gazelle_plugin",
-    version = "1.8.1",
+    version = "1.8.2",
     dev_dependency = True,
 )
 bazel_dep(
