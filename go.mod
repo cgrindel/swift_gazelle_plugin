@@ -2,7 +2,7 @@ module github.com/cgrindel/swift_gazelle_plugin
 
 go 1.24.0
 
-toolchain go1.25.1
+toolchain go1.25.2
 
 // Workaround for inconsistent Go versions being used in rules_bazel_integration_test tests.
 // toolchain go1.21.5
