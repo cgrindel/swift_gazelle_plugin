@@ -8,8 +8,8 @@ toolchain go1.25.3
 // toolchain go1.21.5
 
 require (
-	github.com/bazelbuild/bazel-gazelle v0.45.0
-	github.com/bazelbuild/buildtools v0.0.0-20240918101019-be1c24cc9a44
+	github.com/bazelbuild/bazel-gazelle v0.46.0
+	github.com/bazelbuild/buildtools v0.0.0-20250930140053-2eb4fccefb52
 	github.com/creasty/defaults v1.8.0
 	github.com/deckarep/golang-set/v2 v2.8.0
 	github.com/stretchr/testify v1.11.1
