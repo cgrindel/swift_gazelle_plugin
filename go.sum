@@ -1,5 +1,5 @@
-github.com/bazelbuild/bazel-gazelle v0.46.0 h1:kkpz+nQXdfMjwu3CT+Z/1pULi2uGrB/ExK9AD1pIl8A=
-github.com/bazelbuild/bazel-gazelle v0.46.0/go.mod h1:8Ozf20jhv+in87nCUHdmUPPcVGTfKg/gotZ/hce3T+w=
+github.com/bazelbuild/bazel-gazelle v0.47.0 h1:g3Rr1ZbkC1Pk20aOgBITxSD/efS1WbaSty5jC786Z3Q=
+github.com/bazelbuild/bazel-gazelle v0.47.0/go.mod h1:8Ozf20jhv+in87nCUHdmUPPcVGTfKg/gotZ/hce3T+w=
 github.com/bazelbuild/buildtools v0.0.0-20250930140053-2eb4fccefb52 h1:njQAmjTv/YHRm/0Lfv9DXHFZ4MdT2IA/RKHTnqZkgDw=
 github.com/bazelbuild/buildtools v0.0.0-20250930140053-2eb4fccefb52/go.mod h1:PLNUetjLa77TCCziPsz0EI8a6CUxgC+1jgmWv0H25tg=
 github.com/bazelbuild/rules_go v0.53.0 h1:u160DT+RRb+Xb2aSO4piN8xhs4aZvWz2UDXCq48F4ao=
