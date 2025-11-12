@@ -14,7 +14,7 @@ require (
 	github.com/deckarep/golang-set/v2 v2.8.0
 	github.com/stretchr/testify v1.11.1
 	golang.org/x/exp v0.0.0-20251023183803-a4bb9ffd2546
-	golang.org/x/text v0.30.0
+	golang.org/x/text v0.31.0
 	gopkg.in/yaml.v3 v3.0.1
 )
 
