@@ -13,7 +13,7 @@ require (
 	github.com/creasty/defaults v1.8.0
 	github.com/deckarep/golang-set/v2 v2.8.0
 	github.com/stretchr/testify v1.11.1
-	golang.org/x/exp v0.0.0-20251023183803-a4bb9ffd2546
+	golang.org/x/exp v0.0.0-20251113190631-e25ba8c21ef6
 	golang.org/x/text v0.31.0
 	gopkg.in/yaml.v3 v3.0.1
 )
@@ -21,7 +21,7 @@ require (
 require (
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
-	golang.org/x/mod v0.29.0 // indirect
+	golang.org/x/mod v0.30.0 // indirect
 	golang.org/x/sys v0.28.0 // indirect
 	golang.org/x/tools/go/vcs v0.1.0-deprecated // indirect
 )
