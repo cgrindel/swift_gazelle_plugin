@@ -11,9 +11,9 @@ local_path_override(
     path = "../..",
 )
 
-bazel_dep(name = "rules_swift_package_manager", version = "1.11.0")
+bazel_dep(name = "rules_swift_package_manager", version = "1.11.1")
 bazel_dep(name = "cgrindel_bazel_starlib", version = "0.27.0")
-bazel_dep(name = "bazel_skylib", version = "1.8.2")
+bazel_dep(name = "bazel_skylib", version = "1.9.0")
 bazel_dep(name = "rules_shell", version = "0.6.1")
 
 # The apple_support bazel_dep must come before the rules_cc.
@@ -25,13 +25,13 @@ bazel_dep(
 )
 bazel_dep(
     name = "rules_apple",
-    version = "4.3.2",
+    version = "4.3.3",
     repo_name = "build_bazel_rules_apple",
 )
 
 bazel_dep(
     name = "bazel_skylib_gazelle_plugin",
-    version = "1.8.2",
+    version = "1.9.0",
     dev_dependency = True,
 )
 bazel_dep(
@@ -45,7 +45,7 @@ bazel_dep(name = "rules_proto", version = "7.1.0")
 
 # Gazelle currently needs protobuf to be named com_google_protobuf.
 # If they fix this, we can remove the repo_name argument.
-bazel_dep(name = "protobuf", version = "33.1", repo_name = "com_google_protobuf")
+bazel_dep(name = "protobuf", version = "33.2", repo_name = "com_google_protobuf")
 
 apple_cc_configure = use_extension(
     "@apple_support//crosstool:setup.bzl",
