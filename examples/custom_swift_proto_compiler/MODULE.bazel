@@ -21,7 +21,7 @@ bazel_dep(name = "rules_shell", version = "0.6.1")
 bazel_dep(name = "apple_support", version = "2.1.0")
 bazel_dep(
     name = "rules_swift",
-    version = "3.4.1",
+    version = "3.4.2",
 )
 bazel_dep(
     name = "rules_apple",
