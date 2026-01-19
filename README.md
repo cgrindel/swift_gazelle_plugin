@@ -40,7 +40,7 @@ Add a dependency on `swift_gazelle_plugin`.
 
 <!-- BEGIN MODULE SNIPPET -->
 ```python
-bazel_dep(name = "swift_gazelle_plugin", version = "0.2.1")
+bazel_dep(name = "swift_gazelle_plugin", version = "0.2.2")
 ```
 <!-- END MODULE SNIPPET -->
 
