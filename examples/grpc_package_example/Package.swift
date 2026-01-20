@@ -8,6 +8,6 @@ let package = Package(
         // These are the versions used by rules_swift
         .package(url: "https://github.com/grpc/grpc-swift.git", exact: "1.27.1"),
         .package(url: "https://github.com/apple/swift-protobuf.git", exact: "1.31.1"),
-        .package(url: "https://github.com/apple/swift-nio", exact: "2.92.2"),
+        .package(url: "https://github.com/apple/swift-nio", exact: "2.93.0"),
     ]
 )
