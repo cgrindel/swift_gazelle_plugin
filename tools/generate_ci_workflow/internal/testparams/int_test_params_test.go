@@ -20,7 +20,7 @@ func TestNewIntTestParamsFromJSON(t *testing.T) {
 
 const intTestParamsJSON = `
 [
-  {"test": "@@//path:int_test", "os": "macos", "bzlmod_mode": "enabled"},
-  {"test": "@@//path:int_test", "os": "linux", "bzlmod_mode": "disabled"}
+  {"test": "@@//path:int_test", "os": "macos"},
+  {"test": "@@//path:int_test", "os": "linux"}
 ]
 `
