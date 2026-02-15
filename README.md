@@ -3,7 +3,7 @@
 [![Build](https://github.com/cgrindel/swift_gazelle_plugin/actions/workflows/ci.yml/badge.svg?event=schedule)](https://github.com/cgrindel/swift_gazelle_plugin/actions/workflows/ci.yml)
 
 This repository contains a [Gazelle plugin] used to generate [rules_swift] targets based upon your
-Swift source code..
+Swift source code.
 
 ## Table of Contents
 
@@ -101,6 +101,8 @@ The following are a few tips to consider as you work with your repository:
 
 <!-- Links -->
 
+[Bazel modules]: https://bazel.build/external/module
+[Bazel's hybrid mode]: https://bazel.build/external/migration#hybrid-mode
 [Gazelle plugin]: https://github.com/bazelbuild/bazel-gazelle/blob/master/extend.md
 [rules_swift]: https://github.com/bazelbuild/rules_swift
 [swift_gazelle_plugin]: https://github.com/cgrindel/swift_gazelle_plugin

@@ -80,7 +80,7 @@ The plugin analyzes Swift source files and generates appropriate Bazel rules:
 
 - Integrates with `rules_swift` for Swift compilation
 - Supports `rules_swift_package_manager` for Swift Package Manager dependencies
-- Works with both WORKSPACE and bzlmod dependency management
+- Works with bzlmod dependency management
 
 ### Configuration
 
