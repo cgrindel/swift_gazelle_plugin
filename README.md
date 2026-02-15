@@ -9,13 +9,12 @@ Swift source code..
 
 <!-- MARKDOWN TOC: BEGIN -->
 * [Quickstart](#quickstart)
-  * [1. Enable bzlmod](#1-enable-bzlmod)
-  * [2. Configure your `MODULE.bazel` to use swift_gazelle_plugin.](#2-configure-your-modulebazel-to-use-swift_gazelle_plugin)
-  * [3. Add Gazelle targets to `BUILD.bazel` at the root of your workspace.](#3-add-gazelle-targets-to-buildbazel-at-the-root-of-your-workspace)
-  * [4. Create or update Bazel build files for your project.](#4-create-or-update-bazel-build-files-for-your-project)
-  * [5. Build and test your project.](#5-build-and-test-your-project)
-  * [6. Check in `MODULE.bazel`.](#6-check-in-modulebazel)
-  * [10. Start coding](#10-start-coding)
+  * [1. Configure your `MODULE.bazel` to use swift_gazelle_plugin.](#1-configure-your-modulebazel-to-use-swift_gazelle_plugin)
+  * [2. Add Gazelle targets to `BUILD.bazel` at the root of your workspace.](#2-add-gazelle-targets-to-buildbazel-at-the-root-of-your-workspace)
+  * [3. Create or update Bazel build files for your project.](#3-create-or-update-bazel-build-files-for-your-project)
+  * [4. Build and test your project.](#4-build-and-test-your-project)
+  * [5. Check in `MODULE.bazel`.](#5-check-in-modulebazel)
+  * [6. Start coding](#6-start-coding)
 * [Tips and Tricks](#tips-and-tricks)
 <!-- MARKDOWN TOC: END -->
 
@@ -26,25 +25,19 @@ repository. These instructions assume that you are using [Bazel modules] to load
 dependencies. If you are using Bazel's legacy external dependency management, we recommend using
 [Bazel's hybrid mode], then follow the steps in this quickstart guide.
 
-### 1. Enable bzlmod
-
-This repository supports [bzlmod].
-
-```
-common --enable_bzlmod
-```
-
-### 2. Configure your `MODULE.bazel` to use [swift_gazelle_plugin].
+### 1. Configure your `MODULE.bazel` to use [swift_gazelle_plugin].
 
 Add a dependency on `swift_gazelle_plugin`.
 
 <!-- BEGIN MODULE SNIPPET -->
+
 ```python
 bazel_dep(name = "swift_gazelle_plugin", version = "0.2.2")
 ```
+
 <!-- END MODULE SNIPPET -->
 
-### 3. Add Gazelle targets to `BUILD.bazel` at the root of your workspace.
+### 2. Add Gazelle targets to `BUILD.bazel` at the root of your workspace.
 
 Add the following to the `BUILD.bazel` file at the root of your workspace.
 
@@ -69,7 +62,7 @@ gazelle(
 )
 ```
 
-### 4. Create or update Bazel build files for your project.
+### 3. Create or update Bazel build files for your project.
 
 Generate/update the Bazel build files for your project by running the following:
 
@@ -77,7 +70,7 @@ Generate/update the Bazel build files for your project by running the following:
 bazel run //:update_build_files
 ```
 
-### 5. Build and test your project.
+### 4. Build and test your project.
 
 Build and test your project.
 
@@ -85,11 +78,11 @@ Build and test your project.
 bazel test //...
 ```
 
-### 6. Check in `MODULE.bazel`.
+### 5. Check in `MODULE.bazel`.
 
 - The `MODULE.bazel` contains the declarations for your external dependencies.
 
-### 10. Start coding
+### 6. Start coding
 
 You are ready to start coding.
 
