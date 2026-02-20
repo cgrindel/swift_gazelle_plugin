@@ -92,7 +92,6 @@ bazel_integration_test(
 
 ci_integration_test_params(
     name = "archive_test_params",
-    bzlmod_modes = ["enabled"],
     oss = [
         "macos",
         "linux",
