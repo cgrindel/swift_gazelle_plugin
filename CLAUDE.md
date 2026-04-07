@@ -174,3 +174,6 @@ When making changes:
 ## Commit Message Guidelines
 
 - Use conventional commit message format for this repository
+- The current working directory may be a git worktree. Check by comparing `git rev-parse --git-dir`
+  and `git rev-parse --git-common-dir` — if they differ, you are in a linked worktree. Always
+  operate relative to the current directory and do not assume paths relative to the main checkout.
