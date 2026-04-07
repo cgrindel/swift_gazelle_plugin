@@ -63,12 +63,10 @@ jobs:
       - uses: ./.github/actions/set_up_ubuntu
         if: ${{ startsWith(matrix.runner, 'ubuntu') }}
         with:
-          repo_name: swift_gazelle_plugin
           ubuntu_version: "22.04"
       - uses: ./.github/actions/set_up_macos
         if: ${{ startsWith(matrix.runner, 'macos') }}
         with:
-          repo_name: swift_gazelle_plugin
           test_target: ${{ matrix.test }}
       - uses: ./.github/actions/configure_remote_cache_auth
         with:
@@ -91,12 +89,9 @@ jobs:
       - uses: ./.github/actions/set_up_ubuntu
         if: ${{ startsWith(matrix.runner, 'ubuntu') }}
         with:
-          repo_name: swift_gazelle_plugin
           ubuntu_version: "22.04"
       - uses: ./.github/actions/set_up_macos
         if: ${{ startsWith(matrix.runner, 'macos') }}
-        with:
-          repo_name: swift_gazelle_plugin
       - uses: ./.github/actions/configure_remote_cache_auth
         with:
           buildbuddy_api_key: ${{ secrets.BUILDBUDDY_API_KEY }}
