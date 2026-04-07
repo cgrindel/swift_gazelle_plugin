@@ -20,3 +20,7 @@ bazel-*
 
 # Ignore vscode settings
 .vscode
+
+# Ignore Claude Code local files
+.claude/settings.local.json
+.claude/scheduled_tasks.lock
