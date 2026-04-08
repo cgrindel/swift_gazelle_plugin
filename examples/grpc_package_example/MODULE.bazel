@@ -66,8 +66,9 @@ use_repo(
     swift_deps,
     "swift_deps_info",
     "swift_package",
-    "swiftpkg_grpc_swift",
-    "swiftpkg_swift_nio",
+    "swiftpkg_grpc_swift_2",
+    "swiftpkg_grpc_swift_nio_transport",
+    "swiftpkg_grpc_swift_protobuf",
     "swiftpkg_swift_protobuf",
 )
 # swift_deps END

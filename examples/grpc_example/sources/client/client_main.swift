@@ -13,52 +13,36 @@
 // limitations under the License.
 
 import Foundation
+import GRPCCore
+import GRPCNIOTransportHTTP2
 import SwiftProtobuf
-import GRPC
-import NIOCore
-import NIOPosix
 import EchoRequest
 import EchoResponse
 import EchoServiceClient
 
 @main
 struct ClientMain {
-  static func main() throws {
-    // Setup an `EventLoopGroup` for the connection to run on.
-    //
-    // See: https://github.com/apple/swift-nio#eventloops-and-eventloopgroups
-    let group = MultiThreadedEventLoopGroup(numberOfThreads: 1)
+  static func main() async throws {
+    try await withGRPCClient(
+      transport: .http2NIOPosix(
+        target: .ipv4(host: "localhost", port: 9000),
+        transportSecurity: .plaintext
+      )
+    ) { client in
+      let echo = EchoService_Echo.Client(wrapping: client)
 
-    // Make sure the group is shutdown when we're done with it.
-    defer {
-      try! group.syncShutdownGracefully()
-    }
+      let request = EchoService_EchoRequest.with {
+        $0.contents = "Hello, world!"
+        let timestamp = Google_Protobuf_Timestamp(date: Date())
+        $0.extra = try! Google_Protobuf_Any(message: timestamp)
+      }
 
-    // Configure the channel, we're not using TLS so the connection is `insecure`.
-    let channel = try GRPCChannelPool.with(
-      target: .host("localhost", port: 9000),
-      transportSecurity: .plaintext,
-      eventLoopGroup: group
-    )
-
-    // Initialize the client using the same address the server is started on.
-    let client = EchoService_EchoNIOClient(channel: channel)
-
-    // Construct a request to the echo service.
-    let request = EchoService_EchoRequest.with {
-      $0.contents = "Hello, world!"
-      let timestamp = Google_Protobuf_Timestamp(date: Date())
-      $0.extra = try! Google_Protobuf_Any(message: timestamp)
-    }
-
-    let call = client.echo(request)
-
-    // Make the remote method call and print the response we receive.
-    do {
-      let response = try call.response.wait()
-      print(response.contents)
-    } catch {
-      print("Echo failed: \(error)")
+      do {
+        let response = try await echo.echo(request)
+        print(response.contents)
+      } catch {
+        print("Echo failed: \(error)")
+      }
     }
   }
 }
