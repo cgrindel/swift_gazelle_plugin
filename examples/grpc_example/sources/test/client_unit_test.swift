@@ -12,91 +12,50 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import GRPC
-import NIOCore
-import NIOPosix
+import GRPCCore
+import GRPCInProcessTransport
 import XCTest
 import EchoRequest
 import EchoResponse
 import EchoServiceClient
 import EchoServiceServer
 
-public class EchoProvider: EchoService_EchoProvider {
-  public var interceptors: EchoService_EchoServerInterceptorFactoryProtocol?
-
-  public init(interceptors: EchoService_EchoServerInterceptorFactoryProtocol? = nil) {
-    self.interceptors = interceptors
-  }
-
-  public func echo(
+struct TestEchoProvider: EchoServiceServer.EchoService_Echo.SimpleServiceProtocol {
+  func echo(
     request: EchoService_EchoRequest,
-    context: StatusOnlyCallContext)
-    -> EventLoopFuture<EchoService_EchoResponse>
-  {
-    let response = EchoService_EchoResponse.with {
+    context: ServerContext
+  ) async throws -> EchoService_EchoResponse {
+    return EchoService_EchoResponse.with {
       $0.contents = request.contents
     }
-    return context.eventLoop.makeSucceededFuture(response)
   }
 }
 
-class ClientUnitTest: XCTestCase {
+final class ClientUnitTest: XCTestCase {
 
-  private var group: MultiThreadedEventLoopGroup?
-  private var server: Server?
-  private var channel: ClientConnection?
+  func testGetWithRealClientAndServer() async throws {
+    let inProcess = InProcessTransport()
 
-  private func setUpServerAndChannel() throws -> ClientConnection {
-    let group = MultiThreadedEventLoopGroup(numberOfThreads: 1)
-    self.group = group
+    try await withThrowingTaskGroup(of: Void.self) { group in
+      let server = GRPCServer(
+        transport: inProcess.server,
+        services: [TestEchoProvider()]
+      )
 
-    let server = try Server.insecure(group: group)
-      .withServiceProviders([EchoProvider()])
-      .bind(host: "127.0.0.1", port: 0)
-      .wait()
-
-    self.server = server
-
-    let channel = ClientConnection.insecure(group: group)
-      .connect(host: "127.0.0.1", port: server.channel.localAddress!.port!)
-
-    self.channel = channel
-
-    return channel
-  }
-
-  override func tearDown() {
-    if let channel = self.channel {
-      XCTAssertNoThrow(try channel.close().wait())
-    }
-    if let server = self.server {
-      XCTAssertNoThrow(try server.close().wait())
-    }
-    if let group = self.group {
-      XCTAssertNoThrow(try group.syncShutdownGracefully())
-    }
-
-    super.tearDown()
-  }
-
-  func testGetWithRealClientAndServer() throws {
-    let channel = try self.setUpServerAndChannel()
-    let client = EchoService_EchoNIOClient(channel: channel)
-
-    let completed = self.expectation(description: "'Get' completed")
-
-    let call = client.echo(EchoService_EchoRequest.with { $0.contents = "Hello" })
-    call.response.whenComplete { result in
-      switch result {
-      case let .success(response):
-        XCTAssertEqual(response.contents, "Hello")
-      case let .failure(error):
-        XCTFail("Unexpected error \(error)")
+      group.addTask {
+        try await server.serve()
       }
 
-      completed.fulfill()
-    }
+      try await withGRPCClient(
+        transport: inProcess.client
+      ) { client in
+        let echo = EchoServiceClient.EchoService_Echo.Client(wrapping: client)
+        let request = EchoService_EchoRequest.with { $0.contents = "Hello" }
+        let response = try await echo.echo(request)
+        XCTAssertEqual(response.contents, "Hello")
+      }
 
-    self.wait(for: [completed], timeout: 10.0)
+      server.beginGracefulShutdown()
+    }
   }
 }
