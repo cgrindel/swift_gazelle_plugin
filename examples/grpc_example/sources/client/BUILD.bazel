@@ -11,5 +11,6 @@ swift_binary(
         "//protos/echo_service/responses:echo_response_swift_proto",
         "@swiftpkg_grpc_swift_2//:GRPCCore",
         "@swiftpkg_grpc_swift_nio_transport//:GRPCNIOTransportHTTP2",
+        "@swiftpkg_swift_protobuf//:SwiftProtobuf",
     ],
 )
