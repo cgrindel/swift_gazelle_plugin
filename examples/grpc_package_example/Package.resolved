@@ -1,5 +1,5 @@
 {
-  "originHash" : "b44dda6280642df5b57066a9723badfe8609c645933f5caacb3f6530f343168e",
+  "originHash" : "d50c075b7dc3bc5e03d918572ad53cec5771df8486db83d4478fc490731ce38c",
   "pins" : [
     {
       "identity" : "grpc-swift-2",
@@ -15,8 +15,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/grpc/grpc-swift-nio-transport.git",
       "state" : {
-        "revision" : "fd8d73d646c9423948adb60e64d810f3f55d008e",
-        "version" : "2.6.2"
+        "revision" : "f62a09000685b5b86ee383b63e042f286b1a5422",
+        "version" : "2.7.0"
       }
     },
     {
@@ -69,8 +69,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-certificates.git",
       "state" : {
-        "revision" : "5aa1c0d1bc204908df47c2075bdbb39573d05e8d",
-        "version" : "1.19.0"
+        "revision" : "bde8ca32a096825dfce37467137c903418c1893d",
+        "version" : "1.19.1"
       }
     },
     {
