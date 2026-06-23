@@ -1,13 +1,13 @@
 {
-  "originHash" : "f7b004e05f4f8e8ba09ec8a5665393a444337969525d4a140f4a69b91f550172",
+  "originHash" : "6907a62a68698f2d344528eb5f15c399af6fccd1aa5d38f0ad274b137259b4d0",
   "pins" : [
     {
       "identity" : "grpc-swift-2",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/grpc/grpc-swift-2.git",
       "state" : {
-        "revision" : "21fe69ab7ce0e87ac089534733c52f037e74a3eb",
-        "version" : "2.4.1"
+        "revision" : "28cdd63ef88583ddc67d7bb179eab46fab465ce9",
+        "version" : "2.4.2"
       }
     },
     {
@@ -69,8 +69,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-certificates.git",
       "state" : {
-        "revision" : "bde8ca32a096825dfce37467137c903418c1893d",
-        "version" : "1.19.1"
+        "revision" : "eaa10d47d19919979dd8df22ff4fd6349b1108d4",
+        "version" : "1.19.2"
       }
     },
     {
@@ -123,8 +123,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-nio.git",
       "state" : {
-        "revision" : "77b84ac2cd2ac9e4ac67d19f045fd5b434f56967",
-        "version" : "2.101.0"
+        "revision" : "a8e036cb8628fcc1ff67dfec6ce8168617172c9b",
+        "version" : "2.101.1"
       }
     },
     {
@@ -195,8 +195,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-system.git",
       "state" : {
-        "revision" : "e402d5fa38d1524896e7d913ce1320384e0bedf7",
-        "version" : "1.7.0"
+        "revision" : "7502b711c92a17741fa625d722b0ccbd595d8ed1",
+        "version" : "1.7.2"
       }
     }
   ],
