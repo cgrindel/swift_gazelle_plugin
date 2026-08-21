@@ -1,6 +1,6 @@
 module github.com/cgrindel/swift_gazelle_plugin
 
-go 1.25.0
+go 1.26.0
 
 toolchain go1.27.0
 
@@ -13,7 +13,7 @@ require (
 	github.com/creasty/defaults v1.8.0
 	github.com/deckarep/golang-set/v2 v2.9.0
 	github.com/stretchr/testify v1.12.1
-	golang.org/x/exp v0.0.0-20260813180055-c1d0aacb2297
+	golang.org/x/exp v0.0.0-20260820142414-ca536658362e
 	golang.org/x/text v0.41.0
 	gopkg.in/yaml.v3 v3.0.1
 )
