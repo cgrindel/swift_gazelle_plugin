@@ -8,7 +8,7 @@ import (
 	"github.com/cgrindel/swift_gazelle_plugin/gazelle/internal/spdesc"
 	"github.com/cgrindel/swift_gazelle_plugin/gazelle/internal/spdump"
 	"github.com/cgrindel/swift_gazelle_plugin/gazelle/internal/swiftbin"
-	mapset "github.com/deckarep/golang-set/v2"
+	mapset "github.com/deckarep/golang-set/v3"
 )
 
 // A PackageInfo encapsulates all of the information about a Swift package.

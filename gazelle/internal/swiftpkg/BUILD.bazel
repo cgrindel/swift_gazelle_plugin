@@ -22,7 +22,7 @@ go_library(
         "//gazelle/internal/spdesc",
         "//gazelle/internal/spdump",
         "//gazelle/internal/swiftbin",
-        "@com_github_deckarep_golang_set_v2//:golang-set",
+        "@com_github_deckarep_golang_set_v3//:golang-set",
         "@org_golang_x_exp//slices",
     ],
 )

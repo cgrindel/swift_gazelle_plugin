@@ -5,7 +5,7 @@ import (
 
 	"github.com/bazelbuild/bazel-gazelle/label"
 	"github.com/cgrindel/swift_gazelle_plugin/gazelle/internal/swiftpkg"
-	mapset "github.com/deckarep/golang-set/v2"
+	mapset "github.com/deckarep/golang-set/v3"
 )
 
 type productJSONData struct {
