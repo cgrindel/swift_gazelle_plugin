@@ -6,7 +6,7 @@ import (
 
 	"github.com/bazelbuild/bazel-gazelle/label"
 	"github.com/cgrindel/swift_gazelle_plugin/gazelle/internal/swift"
-	mapset "github.com/deckarep/golang-set/v2"
+	mapset "github.com/deckarep/golang-set/v3"
 	"github.com/stretchr/testify/assert"
 )
 
