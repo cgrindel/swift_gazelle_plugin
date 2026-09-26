@@ -12,7 +12,7 @@ go_library(
     visibility = ["//gazelle:go_packages"],
     deps = [
         "//gazelle/internal/swift",
-        "@com_github_deckarep_golang_set_v2//:golang-set",
+        "@com_github_deckarep_golang_set_v3//:golang-set",
         "@gazelle//label",
         "@gazelle//resolve",
         "@gazelle//rule",

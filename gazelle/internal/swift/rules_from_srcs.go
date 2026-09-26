@@ -6,7 +6,7 @@ import (
 	"github.com/bazelbuild/bazel-gazelle/language"
 	"github.com/bazelbuild/bazel-gazelle/rule"
 	"github.com/cgrindel/swift_gazelle_plugin/gazelle/internal/swiftpkg"
-	mapset "github.com/deckarep/golang-set/v2"
+	mapset "github.com/deckarep/golang-set/v3"
 )
 
 // RulesFromSrcs returns the Bazel build rule declarations for the provided source files.
