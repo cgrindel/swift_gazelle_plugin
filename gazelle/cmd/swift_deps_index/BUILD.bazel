@@ -1,0 +1,43 @@
+load("@cgrindel_bazel_starlib//bzlformat:defs.bzl", "bzlformat_pkg")
+load("@rules_go//go:def.bzl", "go_binary", "go_library", "go_test")
+
+go_library(
+    name = "swift_deps_index_lib",
+    srcs = [
+        "create.go",
+        "main.go",
+    ],
+    importpath = "github.com/cgrindel/swift_gazelle_plugin/gazelle/cmd/swift_deps_index",
+    visibility = ["//visibility:private"],
+    deps = [
+        "//gazelle/internal/swift",
+        "//gazelle/internal/swiftpkg",
+    ],
+)
+
+go_binary(
+    name = "swift_deps_index",
+    embed = [":swift_deps_index_lib"],
+    visibility = ["//visibility:public"],
+)
+
+go_test(
+    name = "swift_deps_index_test",
+    srcs = ["create_test.go"],
+    embed = [":swift_deps_index_lib"],
+    deps = [
+        "//gazelle/internal/swift",
+        "@com_github_stretchr_testify//assert",
+        "@com_github_stretchr_testify//require",
+    ],
+)
+
+bzlformat_pkg(name = "bzlformat")
+
+# MARK: - Integration Test
+
+filegroup(
+    name = "all_files",
+    srcs = glob(["*"]),
+    visibility = ["//:__subpackages__"],
+)
