@@ -13,7 +13,7 @@ require (
 	github.com/creasty/defaults v1.11.0
 	github.com/deckarep/golang-set/v3 v3.0.0
 	github.com/stretchr/testify v1.12.1
-	golang.org/x/exp v0.0.0-20261121134650-e1094eeca1b5
+	golang.org/x/exp v0.0.0-20261124000051-d6646c509b6d
 	golang.org/x/text v0.44.0
 	gopkg.in/yaml.v3 v3.0.1
 )
