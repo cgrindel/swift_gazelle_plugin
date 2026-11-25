@@ -1,5 +1,5 @@
 {
-  "originHash" : "3fadb61a1ec4ab60aeef5f34a26cc4692d4c971b556ba99fada57148af251f14",
+  "originHash" : "a7a9e088e69655decdb2dbeff6aced8cbc04727417542f1eb6b789467691fb16",
   "pins" : [
     {
       "identity" : "grpc-swift-2",
@@ -15,8 +15,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/grpc/grpc-swift-nio-transport.git",
       "state" : {
-        "revision" : "681c0419186ddd723a319f082eea9f46592344ca",
-        "version" : "2.13.2"
+        "revision" : "0895a88fdaaa549548ebab9c6a0571d5d499df5d",
+        "version" : "2.13.3"
       }
     },
     {
@@ -87,8 +87,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-crypto.git",
       "state" : {
-        "revision" : "3280a5f72874d2f73bf25551bbb64f524c76d834",
-        "version" : "5.1.2"
+        "revision" : "b0b1963823fe828065ef49c09c8c9489f43cf7be",
+        "version" : "5.2.0"
       }
     },
     {
@@ -123,8 +123,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-nio.git",
       "state" : {
-        "revision" : "ae78c343cde1fad5aad88f0bf59cc7a91dfec0e5",
-        "version" : "2.105.1"
+        "revision" : "b003027fc38b649a43e9aad77c3d4e4a2c5b6997",
+        "version" : "2.105.2"
       }
     },
     {
