@@ -147,6 +147,7 @@ filegroup(
         "//ci:all_files",
         "//ci/internal:all_files",
         "//gazelle:all_files",
+        "//gazelle/cmd/swift_deps_index:all_files",
         "//gazelle/internal/jsonutils:all_files",
         "//gazelle/internal/pathdistance:all_files",
         "//gazelle/internal/reslog:all_files",
@@ -159,6 +160,8 @@ filegroup(
         "//gazelle/internal/swiftcfg:all_files",
         "//gazelle/internal/swiftpkg:all_files",
         "//gazelle/internal/updmarker:all_files",
+        "//swift_deps_index:all_files",
+        "//swift_deps_index/internal:all_files",
     ],
     visibility = ["//:__subpackages__"],
 )
